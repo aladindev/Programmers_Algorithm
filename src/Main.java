@@ -4,25 +4,26 @@ public class Main {
 	public static void main(String[] args) {
 
 		Solution s = new Solution();
-		
-		s.solution(12345);
+		System.out.println("" + s.solution(121));
 		
 	}
 
 }
 
 class Solution {
-    public int[] solution(long n) {
+    public long solution(long n) {
+        long answer = 0;
+
+        // 제곱근을 반환하는 Math 함수 
+        Double d = Math.sqrt(n);
         
-    	String s = String.valueOf(n);
-    	long tmpN = n;
-        int[] answer = new int[s.length()];
-        
-        for(int i = 0 ; i < answer.length ; i++) {
-        	answer[i] = (int) (tmpN%10);
-        	tmpN = tmpN/10;
+        // intValue와 d가 같으면, 즉 제곱근에 소수점이 없다
+        if( d == d.intValue()) {
+        	// 제곱함수 
+        	return (long)Math.pow(d+1, 2);
         }
-        return answer;
+       
+        return -1;
     }
 }
 
