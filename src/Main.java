@@ -4,28 +4,18 @@ public class Main {
 	public static void main(String[] args) {
 
 		Solution s = new Solution();
-		s.solution(13);
 		
 	}
 
 }
 
 class Solution {
-    public boolean solution(int x) {
-        boolean answer = true;
+    public long[] solution(int x, int n) {
+        long[] answer = new long[n];
         
-        int hap = 0;
-        int tmp = x;
-        //각 자리수의 합 구하기 
-        while(true) {
-            hap += tmp%10;
-            tmp /= 10;
-            if(tmp == 0) break;
+        for(long i = 0 ; i < n ; i++) {
+        	answer[(int) i] = x*(i+1);
         }
-        if(x % hap != 0) answer = false;
-        
         return answer;
     }
 }
-
-
