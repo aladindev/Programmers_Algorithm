@@ -1,16 +1,3 @@
-
-public class Main {
-
-	public static void main(String[] args) {
-
-		Solution s = new Solution();
-		
-		s.solution(12345);
-		
-	}
-
-}
-
 class Solution {
     public int[] solution(long n) {
         
@@ -20,10 +7,9 @@ class Solution {
         
         for(int i = 0 ; i < answer.length ; i++) {
         	answer[i] = (int) (tmpN%10);
+        	// 몫으로 초기화 
         	tmpN = tmpN/10;
         }
         return answer;
     }
 }
-
-
