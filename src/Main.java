@@ -7,22 +7,21 @@ public class Main {
 	public static void main(String[] args) {
 
 		Solution s = new Solution();
-		System.out.println(s.solution(118372));
+		
 	}
 
 }
 
 class Solution {
-    public long solution(long n) {
+    public long solution(int input1, int input2) {
         long answer = 0;
-        char[] arr = String.valueOf(n).toCharArray();
-
-        Arrays.sort(arr);
-        String result = "";
-        for(int i = arr.length-1 ; i >= 0 ; i--) {
-        	result += arr[i];
-        }
         
-        return Long.parseLong(result);
+        int s = input1 > input2 ? input2 : input1;
+        int b = input1 > input2 ? input1 : input2;
+        
+        for(int i = s ; i <= b ; i++) {
+        	answer += i;
+        }
+        return answer;
     }
 }
