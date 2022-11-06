@@ -7,21 +7,32 @@ public class Main {
 	public static void main(String[] args) {
 
 		Solution s = new Solution();
+		System.out.println( s.solution(626331) );
 		
 	}
 
 }
 
 class Solution {
-    public long solution(int input1, int input2) {
-        long answer = 0;
-        
-        int s = input1 > input2 ? input2 : input1;
-        int b = input1 > input2 ? input1 : input2;
-        
-        for(int i = s ; i <= b ; i++) {
-        	answer += i;
-        }
-        return answer;
+	
+    public int solution(long num) {
+
+    	long n = num;
+    	
+    	int answer = 0;
+
+    	while(true) {
+    		if(answer > 500) {
+    			answer = -1; break;
+    		}
+    		
+    		if(n == 1) break;
+    		if(n % 2 == 0) n/=2;
+    		else n=n*3+1;
+    		
+    		answer++;
+    	}
+    	
+    	return answer;
     }
 }
