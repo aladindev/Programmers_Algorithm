@@ -7,32 +7,18 @@ public class Main {
 	public static void main(String[] args) {
 
 		Solution s = new Solution();
-		System.out.println( s.solution(626331) );
+		System.out.println( s.solution("027778888") );
 		
 	}
 
 }
 
 class Solution {
-	
-    public int solution(long num) {
-
-    	long n = num;
-    	
-    	int answer = 0;
-
-    	while(true) {
-    		if(answer > 500) {
-    			answer = -1; break;
-    		}
-    		
-    		if(n == 1) break;
-    		if(n % 2 == 0) n/=2;
-    		else n=n*3+1;
-    		
-    		answer++;
-    	}
-    	
-    	return answer;
+    public String solution(String phone_number) {
+        String answer = "";
+        
+        answer = phone_number.substring(0, phone_number.length()-4).replaceAll("[0-9]", "*");
+        answer += phone_number.substring(phone_number.length()-4, phone_number.length());
+        return answer;
     }
 }
