@@ -12,7 +12,10 @@ class Solution {
         
         int idx = 0;
         for(String s : seoul) {
-            if("Kim".equals(s)) answer = "김서방은 " + idx + "에 있다";
+            if("Kim".equals(s)) {
+                answer = "김서방은 " + idx + "에 있다";
+                break;
+            }
             idx++;
         }
         return answer;
