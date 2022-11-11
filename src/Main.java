@@ -8,7 +8,13 @@ public class Main {
 
 		
 		Solution s = new Solution();
-		System.out.println( s.solution(" asdf asdf asdf a a a  a "));
+		//System.out.println( s.solution(" asdf asdf asdf a a a  a "));
+		String str = " asdf asdf asdf a a a  a ";
+		String[] sArr = str.split(" ", -1);
+		
+		for(String aa : sArr) {
+			System.out.println(aa);
+		}
 		
 		
 	}
