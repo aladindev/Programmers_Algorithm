@@ -13,18 +13,16 @@ public class Main {
 }
 
 class Solution {
-    public boolean solution(String s) {
-        boolean answer = false;
+    public long solution(int price, int money, int count) {
+        long answer = -1;
+
+        long needMoney = 0;
         
-        if(s.length() == 4 || s.length() == 6) {
-        	String pattern = "^[0-9]*$";
-            
-            answer = Pattern.matches(pattern, s);
-            return answer;	
-        } else {
-        	answer = false;
-        	return answer;
+        for(int i = 1 ; i <= count ; i ++) {
+        	needMoney += price * i;
         }
         
+        answer = needMoney - money > 0 ? needMoney-money : 0; 
+        return answer;
     }
 }
