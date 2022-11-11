@@ -26,3 +26,24 @@ class Solution {
         }
     }
 }
+
+------아스키코드 활용
+import java.util.regex.Pattern;
+class Solution {
+    public boolean solution(String s) {
+        boolean answer = false;
+        
+        if(s.length() == 4 || s.length() == 6) {
+        	char[] arr = s.toCharArray();
+            for(char c : arr) {
+                answer = (c>47 && c<58) ? true : false;
+                if(!answer) break;
+            }
+            
+            return answer;	
+        } else {
+        	answer = false;
+        	return answer;
+        }
+    }
+}
