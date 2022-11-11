@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -12,15 +13,18 @@ public class Main {
 }
 
 class Solution {
-    public String solution(String s) {
-        String answer = "";
-
-        char[] arr = s.toCharArray();
+    public boolean solution(String s) {
+        boolean answer = false;
         
-        // Zbcdefg 오름차순 정렬 후 reverse
-        Arrays.sort(arr);
-        StringBuilder sb = new StringBuilder(String.valueOf(arr)).reverse();
-        answer = sb.toString();
-        return answer;
+        if(s.length() == 4 || s.length() == 6) {
+        	String pattern = "^[0-9]*$";
+            
+            answer = Pattern.matches(pattern, s);
+            return answer;	
+        } else {
+        	answer = false;
+        	return answer;
+        }
+        
     }
 }
