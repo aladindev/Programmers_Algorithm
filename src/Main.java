@@ -7,32 +7,40 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 
 		
+		Solution s = new Solution();
+		System.out.println( s.solution(" asdf asdf asdf a a a  a "));
 		
 		
 	}
 }
 
 class Solution {
-    public int[] solution(int[] arr) {
-        int[] answer = null;
-        
-        ArrayList<Integer> arrList = new ArrayList<Integer>();
- 
-        Stack<Integer> s = new Stack<>();
-        
-        for(int i = arr.length-1 ; i > -1 ; i--) {
-        	if(i == 0) {
-        		s.push(arr[i]);
-        		break;
-        	}
-        	if(arr[i] != arr[i-1]) s.push(arr[i]);
-        }
-        
-        answer = new int[s.size()];
-        for(int j = 0 ; j < answer.length; j++) {
-        	answer[j] = s.pop();
-        }
+    public String solution(String s) {
+    	
+    	String[] sArr = s.split(" ", -1); // 공백 단위로 쪼개서 배열 저장 
+    	String answer = "";
 
+    	
+    	for(int j = 0 ; j < sArr.length ; j++) {
+    		//최초에는 전부 소문자로 초기화해서 캐릭터 배열에 담는다.
+    		char[] cArr = sArr[j].toLowerCase().toCharArray();
+    		
+    		for(int i = 0 ; i < cArr.length ; i++) {
+    			//짝수이면 아스키코드 -32빼서 대문자로 치환 
+    			if(i%2==0) cArr[i]-=32;
+    			
+    		}
+    		sArr[j] = String.valueOf(cArr);
+    	}
+    	
+    	for(int z = 0 ; z < sArr.length ; z++) {
+    		if(z == sArr.length-1) {
+    			answer += sArr[z];
+    		} else {
+    			answer += sArr[z] + " ";
+    		}
+    	}
+        
         return answer;
     }
 }
