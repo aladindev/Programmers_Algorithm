@@ -10,45 +10,29 @@ public class Main {
 		
 		Solution s = new Solution();
 		
-		int[] arr1 = {9, 20, 28, 18, 11};
-		int[] arr2 = {30, 1, 21, 17, 28};
+		//String[] arr = {"sun", "bed", "car"};
+		String[] arr = {"abcd", "abce", "cdx"};
+		//String[] arr = {"abzcd","cdzab","abzfg","abzaa","abzbb","bbzaa"};
+		s.solution(arr, 2);
 		
-		s.solution(5, arr1, arr2);
-		
+		//s.solution(6, arr1, arr2);
 	}
 }
 
-class Solution {
-    public String[] solution(int n, int[] arr1, int[] arr2) {
-        String[] answer = new String[n];
 
-        for(int i = 0 ; i < n ; i++) {
-        	String a = Integer.toString(arr1[i], 2);
-        	String b = Integer.toString(arr2[i], 2);
-        	String result = "";
-        	
-        	a = lpad(a, n);
-        	b = lpad(b, n);
-        	
-        	
-        	for(int j = 0 ; j < n ; j++) {
-        		if(a.charAt(j) == '1' || b.charAt(j) == '1') {
-        			result += "#";
-        		} else {
-        			result += " ";
-        		}
-        	}
-        	answer[i] = result;
-        }
-        return answer;
-    }
-    
-    public String lpad(String input, int n) {
+class Solution {
+    public String[] solution(String[] strings, int n) {
+        
+    	String[] arr = strings.clone();
     	
-    	String result = input;
-    	for(int i = input.length() ; i < n ; i++) {
-    		result = "0" + result;
+    	for(int i = 0 ; i < arr.length ; i++) {
+    		arr[i] = arr[i].charAt(n) + arr[i];
     	}
-    	return result;
+    	Arrays.sort(arr);
+    	
+    	for(int j = 0 ; j < arr.length ; j++) {
+    		arr[j] = arr[j].substring(1, arr[j].length());
+    	}
+    	return arr;
     }
 }
