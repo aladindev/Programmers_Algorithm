@@ -48,17 +48,12 @@ class Solution {
         	
         	for(int j = 0 ; j < n ; j++) {
         		if(a.charAt(j) == '1' || b.charAt(j) == '1') {
-        			result += "1";
+        			result += "#";
         		} else {
-        			result += "0";
+        			result += " ";
         		}
         	}
         	answer[i] = result;
-        }
-        for(int z = 0 ; z < answer.length ; z++) {
-        	answer[z] = answer[z].replace('1', '#');
-        	answer[z] = answer[z].replace('0', ' ');
-        	System.out.println(answer[z]);
         }
         return answer;
     }
