@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Stack;
 
 public class Main {
@@ -13,12 +14,17 @@ public class Main {
 }
 
 class Solution {
-    public int solution(int n) {
+    public int solution(int[] d, int budget) {
         int answer = 0;
+        int sum = 0;
         
-        String notation3 = Integer.toString(n, 3); //3진법
-        String reverseStr = new StringBuilder(notation3).reverse().toString();
-        answer = Integer.parseInt(reverseStr, 3);
+        Arrays.sort(d);
+        
+        for(int i = 0 ; i < d.length ; i++) {
+        	sum+=d[i];
+        	if(sum > budget) break;
+        	answer+=1;
+        }
         
         return answer;
     }
