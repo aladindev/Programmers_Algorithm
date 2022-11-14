@@ -9,25 +9,51 @@ public class Main {
 
 		
 		Solution s = new Solution();
-		System.out.println(s.solution("a", 4));
-		//e F d
-		// 122 + 4 = 126 
+		
+		int[] arr1 = {9, 20, 28, 18, 11};
+		int[] arr2 = {30, 1, 21, 17, 28};
+		
+		s.solution(5, arr1, arr2);
+		
 	}
 }
 
 class Solution {
-    public String solution(String s, int n) {
-        char[] cArr = s.toCharArray();
-        
-        for(int i = 0 ; i < cArr.length ; i++) {
-        	if(cArr[i] == ' ') continue;
-        
-        	cArr[i] += n;
+    public String[] solution(int n, int[] arr1, int[] arr2) {
+        String[] answer = new String[n];
+
+        for(int i = 0 ; i < n ; i++) {
+        	String a = Integer.toString(arr1[i], 2);
+        	String b = Integer.toString(arr2[i], 2);
+        	String result = "";
         	
-        	if( (cArr[i]-n < 91 && cArr[i] > 90) || (cArr[i]-n < 123 && cArr[i] > 122)) {
-        		cArr[i] -= 26;
+        	a = lpad(a, n);
+        	b = lpad(b, n);
+        	
+        	
+        	for(int j = 0 ; j < n ; j++) {
+        		if(a.charAt(j) == '1' || b.charAt(j) == '1') {
+        			result += "1";
+        		} else {
+        			result += "0";
+        		}
         	}
+        	answer[i] = result;
         }
-        return String.valueOf(cArr);
+        for(int z = 0 ; z < answer.length ; z++) {
+        	answer[z] = answer[z].replace('1', '#');
+        	answer[z] = answer[z].replace('0', ' ');
+        	System.out.println(answer[z]);
+        }
+        return answer;
+    }
+    
+    public String lpad(String input, int n) {
+    	
+    	String result = input;
+    	for(int i = input.length() ; i < n ; i++) {
+    		result = "0" + result;
+    	}
+    	return result;
     }
 }
