@@ -22,7 +22,7 @@ strings	n	return
 
 import java.util.Arrays;
 
-class Solution {
+class Solution {  
     public String[] solution(String[] strings, int n) {
         
     	String[] arr = strings.clone();
