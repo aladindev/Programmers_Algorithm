@@ -10,29 +10,36 @@ public class Main {
 		
 		Solution s = new Solution();
 		
-		//String[] arr = {"sun", "bed", "car"};
-		String[] arr = {"abcd", "abce", "cdx"};
-		//String[] arr = {"abzcd","cdzab","abzfg","abzaa","abzbb","bbzaa"};
-		s.solution(arr, 2);
+		int[] array = {1, 5, 2, 6, 3, 7, 4};
+		int[][] commands = {{2, 5, 3}, {4, 4, 1}, {1, 7, 3}};
+		s.solution(array, commands);
 		
-		//s.solution(6, arr1, arr2);
+		
 	}
 }
 
 
 class Solution {
-    public String[] solution(String[] strings, int n) {
+    public int[] solution(int[] array, int[][] commands) {
+        int[] answer = new int[commands.length];
         
-    	String[] arr = strings.clone();
-    	
-    	for(int i = 0 ; i < arr.length ; i++) {
-    		arr[i] = arr[i].charAt(n) + arr[i];
-    	}
-    	Arrays.sort(arr);
-    	
-    	for(int j = 0 ; j < arr.length ; j++) {
-    		arr[j] = arr[j].substring(1, arr[j].length());
-    	}
-    	return arr;
+        
+        for(int a : array) System.out.print(a + " ");
+        
+        System.out.println();
+        
+        for(int i = 0 ; i < commands.length ; i++) {
+        	
+        	// param1 : 범위 시작 인덱스 0부터 
+        	// param2 : 범위 끝 인덱스 포함 X
+        	int[] temp = 
+        			Arrays.copyOfRange(array, commands[i][0]-1, commands[i][1]);
+        	
+        	Arrays.sort(temp);
+        	answer[i] = temp[commands[i][2]-1];
+        }
+        
+        
+        return answer;
     }
 }
