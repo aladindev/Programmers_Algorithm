@@ -1,7 +1,6 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Stack;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
@@ -9,37 +8,36 @@ public class Main {
 
 		
 		Solution s = new Solution();
-		
-		int[] array = {1, 5, 2, 6, 3, 7, 4};
-		int[][] commands = {{2, 5, 3}, {4, 4, 1}, {1, 7, 3}};
-		s.solution(array, commands);
-		
+		System.out.println(s.solution("2three45sixseven"));
 		
 	}
 }
 
 
 class Solution {
-    public int[] solution(int[] array, int[][] commands) {
-        int[] answer = new int[commands.length];
-        
-        
-        for(int a : array) System.out.print(a + " ");
-        
-        System.out.println();
-        
-        for(int i = 0 ; i < commands.length ; i++) {
-        	
-        	// param1 : 범위 시작 인덱스 0부터 
-        	// param2 : 범위 끝 인덱스 포함 X
-        	int[] temp = 
-        			Arrays.copyOfRange(array, commands[i][0]-1, commands[i][1]);
-        	
-        	Arrays.sort(temp);
-        	answer[i] = temp[commands[i][2]-1];
-        }
-        
-        
-        return answer;
+	public int solution(String s) {
+    	
+    	Map<Integer, String> map = new HashMap<Integer, String>();
+    	int answer = 0;
+    	
+    	map.put(0, "zero");
+    	map.put(1, "one");
+    	map.put(2, "two");
+    	map.put(3, "three");
+    	map.put(4, "four");
+    	map.put(5, "five");
+    	map.put(6, "six");
+    	map.put(7, "seven");
+    	map.put(8, "eight");
+    	map.put(9, "nine");
+    	
+    	for(int i = 0 ; i < map.size() ; i++) {
+    		String str = "" + map.get(i);
+    		
+    		if(s.contains(str)) {
+    			s = s.replace(str, ""+i);
+    		}
+    	}
+        return Integer.parseInt(s);
     }
 }
