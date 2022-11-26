@@ -13,20 +13,28 @@ public class Main {
 	}
 }
 
-//[[1,2]    [[3,4]  [[4,6]
-// [2,3]]	[5,6]]	[7,9]]
-//	[[1],[2]]	[[3],[4]]	[[4],[6]]
-
 class Solution {
-    public int[][] solution(int[][] arr1, int[][] arr2) {
-        int[][] answer = new int[arr1.length][arr1[0].length];
-        
-        for(int i = 0 ; i < answer.length ; i++) {
-        	for(int j = 0 ; j < answer[i].length ; j++) {
-        		answer[i][j] = arr1[i][j] + arr2[i][j];
-        	}
+    public int[] solution(int n, int m) {
+    	
+    	//18, 4
+    	int maxGong = 0; //최대공약수
+    	int tmp;
+    	
+        if(n<m){
+            tmp = n;
+            n = m;
+            m = tmp;
         }
+        int minGong = n%m==0 ? n : n*m; //최소공배수
         
+        while(m!=0){
+        	n = n%m;
+            tmp = m;
+            m = n;
+        }
+        maxGong = m;
+    	
+        int[] answer = {maxGong, minGong};
         return answer;
     }
 }
