@@ -10,27 +10,23 @@ public class Main {
 
 		
 		Solution s = new Solution();
-		System.out.println(s.solution(5, 25));
 	}
 }
 
+//[[1,2]    [[3,4]  [[4,6]
+// [2,3]]	[5,6]]	[7,9]]
+//	[[1],[2]]	[[3],[4]]	[[4],[6]]
 
 class Solution {
-    public int solution(int left, int right) {
-        int answer = 0;
+    public int[][] solution(int[][] arr1, int[][] arr2) {
+        int[][] answer = new int[arr1.length][arr1[0].length];
         
-        for(int i = left ; i <= right ; i++) {
-        	answer = getCnt(i)%2==0 ? answer+i : answer-i;
+        for(int i = 0 ; i < answer.length ; i++) {
+        	for(int j = 0 ; j < answer[i].length ; j++) {
+        		answer[i][j] = arr1[i][j] + arr2[i][j];
+        	}
         }
+        
         return answer;
     }
-    
-   public int getCnt(int num) {
-	   int cnt = 0;
-	   
-	   for(int i = 1 ; i <= num ; i ++) {
-		   cnt = num%i==0 ? cnt+1 : cnt;
-	   }
-	   return cnt;
-   }
 }
