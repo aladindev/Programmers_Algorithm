@@ -53,23 +53,15 @@ lottos	win_nums	result
 실제로 사용되는 로또 순위의 결정 방식과는 약간 다르지만, 이 문제에서는 지문에 명시된 대로 로또 순위를 결정하도록 합니다.  ↩
 
 
-
 import java.util.Arrays;
 import java.util.Map;
 
+
 class Solution {
 	
-	public static Map<Integer, Integer> RANK_MAP = Map.of(
-					// 맞은개수, 등수
-					6,1
-				   ,5,2
-				   ,4,3
-				   ,3,4
-				   ,2,5
-				   ,1,6
-                   ,0,6);
-	
     public int[] solution(int[] lottos, int[] win_nums) {
+    	
+    	int[] RANK_MAP = {6,6,5,4,3,2,1};
     	
     	int collectCnt = 0;
     	int zeroCnt = 0;
@@ -81,7 +73,7 @@ class Solution {
     		zeroCnt = lottos[i]==0 ? zeroCnt+1 : zeroCnt;
     	}
     	
-        int[] answer = {RANK_MAP.get(collectCnt+zeroCnt), RANK_MAP.get(collectCnt)};
+        int[] answer = {RANK_MAP[collectCnt+zeroCnt], RANK_MAP[collectCnt]};
         return answer;
     }
 }
