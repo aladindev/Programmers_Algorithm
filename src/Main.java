@@ -10,28 +10,27 @@ public class Main {
 
 		Solution s = new Solution();
 
-		int[] a = {1, 1, 1, 1, 4, 6, 7};
-		s.solution(a);
+		int[][] a = {{60, 50}, {30, 70}, {60, 30}, {80, 40}};
+		//s.solution(a);
+		System.out.println(s.solution(3,1,20));
 
 	}
 }
 
+
+//콜라를 받기 위해 마트에 주어야 하는 병 수 a
+//빈 병 a개를 가져다 주면 마트가 주는 콜라 병 수 b 
+//상빈이가 가지고 있는 빈 병의 개수 n
 class Solution {
-    public int[] solution(int[] numbers) {
+    public int solution(int a, int b, int n) {
+
     	
-    	Set<Integer> set = new HashSet<Integer>();
-        int[] answer = null;
-        
-        //Set : List와 다르게 중복된 값을 가질 수 없다.(집합과 같은 개념)
-        for(int i = 0 ; i < numbers.length ; i++) {
-        	for(int j = i+1 ; j < numbers.length ; j++) {
-        		set.add(numbers[i]+numbers[j]);
-        	}
-        }
-        
-        // integer 배열로 변환하여 반환 
-        answer = set.stream().sorted().mapToInt(Integer::intValue).toArray();
-        
+    	if(n < a) return 0;
+    	
+    	int hap = b*(n/a) + n%a;
+    	int answer = b*(n/a);
+    	answer += solution(a, b, hap);
+    	
         return answer;
     }
 }
