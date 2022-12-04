@@ -1,7 +1,8 @@
 import java.io.IOException;
-	import java.util.ArrayList;
-	import java.util.Arrays;
-	import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
 
@@ -17,33 +18,19 @@ public class Main {
 
 class Solution {
     public int[] solution(int[] numbers) {
-    	ArrayList<Integer> tempList = new ArrayList<Integer>();
+    	
+    	Set<Integer> set = new HashSet<Integer>();
         int[] answer = null;
         
-        //ArrayList에 담은 뒤 리스트 오름차순 정렬 
+        //Set : List와 다르게 중복된 값을 가질 수 없다.(집합과 같은 개념)
         for(int i = 0 ; i < numbers.length ; i++) {
         	for(int j = i+1 ; j < numbers.length ; j++) {
-        		tempList.add(numbers[i]+numbers[j]);
+        		set.add(numbers[i]+numbers[j]);
         	}
         }
-        Collections.sort(tempList);
-        
-        //리스트 내에 중복되는 수 제거 
-        int idx = 0;
-        while(idx < tempList.size()-1) {
-        	if((int)tempList.get(idx) == (int)tempList.get(idx+1)) {
-        		tempList.remove(idx);
-        	} else {
-        		idx++;
-        	}
-        }
-        
-        
-        //if(Object.equals(list.get(idx), list.get(idx + 1))
         
         // integer 배열로 변환하여 반환 
-        answer = new int[tempList.size()];
-        answer = tempList.stream().mapToInt(Integer::intValue).toArray();
+        answer = set.stream().sorted().mapToInt(Integer::intValue).toArray();
         
         return answer;
     }
