@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.Set;
 
 
@@ -49,7 +50,7 @@ LinkedHashSet도 중복된 데이터를 저장할 수 없다. 차이점은 입�
 class Solution {
     public int[] solution(int[] numbers) {
     	
-    	Set<Integer> set = new HashSet<Integer>();
+    	Set<Integer> set = new TreeSet<Integer>();
         int[] answer = null;
         
         //Set : List와 다르게 중복된 값을 가질 수 없다.(집합과 같은 개념)
@@ -60,7 +61,7 @@ class Solution {
         }
         
         // integer 배열로 변환하여 반환 
-        answer = set.stream().sorted().mapToInt(Integer::intValue).toArray();
+        answer = set.stream().mapToInt(Integer::intValue).toArray();
         
         return answer;
     }
