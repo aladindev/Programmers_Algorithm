@@ -1,8 +1,5 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
 
 public class Main {
 
@@ -10,27 +7,39 @@ public class Main {
 
 		Solution s = new Solution();
 
-		int[][] a = {{60, 50}, {30, 70}, {60, 30}, {80, 40}};
-		//s.solution(a);
-		System.out.println(s.solution(3,1,20));
+		int[] a = {0,0,0,0,0,0};
+		int[] b = {38, 19, 20, 40, 15, 25};
+		s.solution(a, b);
 
 	}
 }
 
 
-//콜라를 받기 위해 마트에 주어야 하는 병 수 a
-//빈 병 a개를 가져다 주면 마트가 주는 콜라 병 수 b 
-//상빈이가 가지고 있는 빈 병의 개수 n
 class Solution {
-    public int solution(int a, int b, int n) {
-
+	
+	public static Map<Integer, Integer> RANK_MAP = Map.of(
+					// 맞은개수, 등수
+					6,1
+				   ,5,2
+				   ,4,3
+				   ,3,4
+				   ,2,5
+				   ,1,6
+				   ,0,6);
+	
+    public int[] solution(int[] lottos, int[] win_nums) {
     	
-    	if(n < a) return 0;
+    	int collectCnt = 0;
+    	int zeroCnt = 0;
     	
-    	int hap = b*(n/a) + n%a;
-    	int answer = b*(n/a);
-    	answer += solution(a, b, hap);
+    	for(int i = 0 ; i < lottos.length ; i++) {
+    		for(int j = 0 ; j < win_nums.length ; j++) {
+    			collectCnt = lottos[i]==win_nums[j] ? collectCnt+1 : collectCnt;
+    		}
+    		zeroCnt = lottos[i]==0 ? zeroCnt+1 : zeroCnt;
+    	}
     	
+        int[] answer = {RANK_MAP.get(collectCnt+zeroCnt), RANK_MAP.get(collectCnt)};
         return answer;
     }
 }
