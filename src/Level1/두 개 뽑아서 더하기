@@ -34,6 +34,18 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+
+HashSet
+ HashSet은 Set 컬렉션을 구현하는 대표적인 클래스이다. 
+ 데이터를 중복 저장할 수 없고 순서를 보장하지 않는다. HashSet을 생성하는 방법은 아래와 같다.
+ 
+TreeSet
+ TreeSet도 HashSet과 같이 중복된 데이터를 저장할 수 없고 입력한 순서대로 값을 저장하지 않는다. 
+ 차이점은 TreeSet은 기본적으로 오름차순으로 데이터를 정렬한다. 예제를 통해서 알아보자.
+ 
+LinkedHashSet
+LinkedHashSet도 중복된 데이터를 저장할 수 없다. 차이점은 입력된 순서대로 데이터를 관리한다.  
+
 class Solution {
     public int[] solution(int[] numbers) {
     	
