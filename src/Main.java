@@ -1,6 +1,7 @@
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Main {
 
@@ -16,33 +17,30 @@ public class Main {
 	}
 }
 
-//[1, 3, 4, 6]	"1223330333221"
-//[1, 7, 1, 2]	"111303111"
 
+/*
+ *  HashMap<K, V> : V는 중복될 수 있으나 K는 중복될 수 없다!!!
+ *  반복자 
+ *  String     >>hm.keySet()    : keySet 메소드는 해쉬의 키 값만 필요할 경우 사용!
+ *  Entry<K,V> >>hm.entrySet()  : entrySet 메소드는 해쉬의 키, 밸류 둘 다 필요할 경우 사용! 
+ * */
 class Solution {
     public String solution(String[] participant, String[] completion) {
-        String answer = "";
         
-        Arrays.sort(participant);
-        Arrays.sort(completion);
-        
-        for(String s : participant) {
-        	System.out.print(s + " ");
-        }
-        System.out.println();
-        for(String s : completion) {
-        	System.out.print(s + " ");
-        }
-        
-        for(int i = 0 ; i < completion.length ; i++) {
-        	// 참여자와 완주자가 같지 않으면 
-        	if(!participant[i].equals(completion[i])) { 
-        		answer = participant[i];
-        		break;
-        	}
-        }
-        System.out.println();
-        
-        return "".equals(answer) ? participant[participant.length-1] : answer;
+
+    	String answer = "";
+    	HashMap<String, Integer> hm = new HashMap<String, Integer>();
+    	
+    	for(String s : participant) hm.put(s, hm.getOrDefault(s, 1)+1);
+    	for(String s : completion) hm.put(s, 0);
+    	
+    	for(Entry<String, Integer> es : hm.entrySet()) {
+    		if(es.getValue() == 1) {
+    			answer = es.getKey();
+    			break;
+    		}
+    	}
+    	
+    	return answer;
     }
 }
