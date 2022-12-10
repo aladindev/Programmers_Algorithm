@@ -61,6 +61,7 @@ class Solution {
         // 차이/3 => 줄이동 
         // 차이%3 => 칸이동
         
+        // 10:* 12:#
         int lIdx = 10, rIdx = 12;
         
         for(int i = 0 ; i < numbers.length ; i++) {
