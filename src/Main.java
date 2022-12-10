@@ -9,38 +9,26 @@ public class Main {
 
 		Solution s = new Solution();
 
-		String[] a = {"marina", "josipa", "nikola", "vinko", "filipa"};
-		String[] b = {"josipa", "filipa", "marina", "nikola"};
 		
-		System.out.println( s.solution(a, b));
+		String c = "banana";
+		s.solution(c);
 
 	}
 }
 
 
-/*
- *  HashMap<K, V> : V는 중복될 수 있으나 K는 중복될 수 없다!!!
- *  반복자 
- *  String     >>hm.keySet()    : keySet 메소드는 해쉬의 키 값만 필요할 경우 사용!
- *  Entry<K,V> >>hm.entrySet()  : entrySet 메소드는 해쉬의 키, 밸류 둘 다 필요할 경우 사용! 
- * */
 class Solution {
-    public String solution(String[] participant, String[] completion) {
+    public int[] solution(String s) {
+    	
+    	char[] cArr = s.toCharArray();
+        int[] answer = new int[cArr.length];
         
-
-    	String answer = "";
-    	HashMap<String, Integer> hm = new HashMap<String, Integer>();
-    	
-    	for(String s : participant) hm.put(s, hm.getOrDefault(s, 1)+1);
-    	for(String s : completion) hm.put(s, 0);
-    	
-    	for(Entry<String, Integer> es : hm.entrySet()) {
-    		if(es.getValue() == 1) {
-    			answer = es.getKey();
-    			break;
-    		}
-    	}
-    	
-    	return answer;
+        for(int i = 0 ; i < s.length() ; i++) {
+        	String tmp = s.substring(0, i);
+        	int lIdx = tmp.lastIndexOf(cArr[i]);
+        	
+        	answer[i] = lIdx!=-1 ? i-lIdx : -1;
+        }
+        return answer;
     }
 }
