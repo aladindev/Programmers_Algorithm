@@ -59,7 +59,7 @@ class Solution {
         String answer = "";
         
         // 차이/3 => 줄이동 
-        // 차이%2 => 칸이동
+        // 차이%3 => 칸이동
         
         int lIdx = 10, rIdx = 12;
         
