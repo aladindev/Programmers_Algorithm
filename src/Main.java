@@ -59,8 +59,6 @@ class Solution {
         	answer[i] = arr[0];
         }
 
-        //test
-//        for(int i : answer) System.out.print(i + " ");
         
         return answer;
     }
