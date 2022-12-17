@@ -51,11 +51,16 @@ class Solution {
         StringBuilder sb = new StringBuilder(answer);
         int cnt = 0;
         // X,Y 인덱스 배열에 둘 다 0이 아니면 중복되는 값으로 판단한다.
-        for(int i = 9 ; i >= 0 ; i--) {
+        for(int i = 9; i >= 0 ; i--) {
         	if(xChe[i]!=0 && yChe[i]!=0) {
-				//숫자의 짝꿍이 맞아야 하므로 합/2의 몫만큼만 더한다.
         		
-        		int idx = xChe[i]>yChe[i] ? yChe[i] : xChe[i];
+				//틀린조건 
+//        		for(int j = 0 ; j < (xChe[i]+yChe[i])/2 ; j++) {
+//        			sb.append(""+i);
+//        			cnt++;
+//        		}
+        		//맞는조건 => 둘 중 최소값만큼만 반복 
+        		int idx = Math.min(xChe[i], yChe[i]);
         		for(int j = 0 ; j < idx ; j++) {
         			sb.append(""+i);
         			cnt++;

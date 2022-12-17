@@ -48,7 +48,7 @@ class Solution {
         char[] xArr = X.toCharArray();
         char[] yArr = Y.toCharArray();
         
-        //캐릭터 배열에 담긴 값 개수를 판단할 인덱스 배열 
+        //캐릭터 배열에 담긴 값 개수를 판단할 인덱스 배 
         int[] xChe = {0,0,0,0,0,0,0,0,0,0};
         int[] yChe = {0,0,0,0,0,0,0,0,0,0};
         
@@ -69,9 +69,17 @@ class Solution {
         StringBuilder sb = new StringBuilder(answer);
         int cnt = 0;
         // X,Y 인덱스 배열에 둘 다 0이 아니면 중복되는 값으로 판단한다.
-        for(int i = 8 ; i >= 0 ; i--) {
+        for(int i = 9; i >= 0 ; i--) {
         	if(xChe[i]!=0 && yChe[i]!=0) {
-        		for(int j = 0 ; j < (xChe[i]+yChe[i])/2 ; j++) {
+        		
+				//틀린조건 
+//        		for(int j = 0 ; j < (xChe[i]+yChe[i])/2 ; j++) {
+//        			sb.append(""+i);
+//        			cnt++;
+//        		}
+        		//맞는조건 => 둘 중 최소값만큼만 반복 
+        		int idx = Math.min(xChe[i], yChe[i]);
+        		for(int j = 0 ; j < idx ; j++) {
         			sb.append(""+i);
         			cnt++;
         		}
