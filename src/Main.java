@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map.Entry;
@@ -14,8 +15,8 @@ public class Main {
 		//int[] a = {4, 1, 2, 2, 4, 4, 4, 4, 1, 2, 4, 2};
 		//System.out.println(s.solution(4, 3, a));
 		
-		String x = "100";
-		String y = "203045";
+		String x = "12321";
+		String y = "42531";
 		System.out.println(s.solution(x, y));
 
 	}
@@ -25,39 +26,50 @@ class Solution {
     public String solution(String X, String Y) {
         String answer = "";
         
+        //각 문자열을 캐릭터 배열로 저장시킨다.
         char[] xArr = X.toCharArray();
         char[] yArr = Y.toCharArray();
-        HashMap<Character, Integer> hm = new HashMap<Character, Integer>();
-        ArrayList<Character> list = new ArrayList<Character>();
         
-        for(char c : xArr) {
-        	hm.put(c, 1);
+        //캐릭터 배열에 담긴 값 개수를 판단할 인덱스 배 
+        int[] xChe = {0,0,0,0,0,0,0,0,0,0};
+        int[] yChe = {0,0,0,0,0,0,0,0,0,0};
+        
+        
+        /* 배열안의 값에 일치하는 인덱스를 각각 증가시킨다. 
+         * ex) 문자열 배열에 1123이 담겨 있으면 
+         *     0, 2, 1, 1, 0, 0, 0, 0, 0
+         * */ 
+        char[] clone = xArr.clone();
+        for(int i = 0 ; i < clone.length ; i++) {
+        	xChe[clone[i]-'0'] += 1;
         }
-        for(char c : yArr) {
-        	hm.put(c, hm.getOrDefault(c, 0)+1);
+        clone = yArr.clone();
+        for(int i = 0 ; i < clone.length ; i++) {
+        	yChe[clone[i]-'0'] += 1;
         }
-
+        
+        StringBuilder sb = new StringBuilder(answer);
         int cnt = 0;
-        for(Entry<Character, Integer> e : hm.entrySet()) {
-        	if(e.getValue() > 1) {
-        		for(int i = 1 ; i < e.getValue() ; i++) {
-        			list.add(e.getKey());
+        // X,Y 인덱스 배열에 둘 다 0이 아니면 중복되는 값으로 판단한다.
+        for(int i = 8 ; i >= 0 ; i--) {
+        	if(xChe[i]!=0 && yChe[i]!=0) {
+        		for(int j = 0 ; j < (xChe[i]+yChe[i])/2 ; j++) {
+        			sb.append(""+i);
+        			cnt++;
         		}
-        		cnt++;
         	}
         }
+        
+        //X,Y에서 겹치는 숫자가 없다면 조건에 맞게 "-1" 반환 후 종료한다.
         if(cnt == 0) {
         	answer = "-1";
         	return answer;
         }
         
-        Collections.sort(list, Collections.reverseOrder());
+        answer = sb.toString();
         
-        for(Character c : list) 
-        	answer += c;
-        
-        
-        if(answer.length() > 1 && answer.charAt(0)=='0') {
+        //만약 "00"과 같이 0만 중복되면 "0"으로 치환한다.
+        if(answer.length()>=2 && answer.charAt(0)=='0') {
         	answer = "0";
         }
         
