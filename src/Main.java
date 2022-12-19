@@ -1,52 +1,65 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map.Entry;
-import java.util.PriorityQueue;
+import java.util.Stack;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
 
 		Solution s = new Solution();
-
-		int[] a = {1, 2, 3, 1, 2, 3, 1};
-		//int[] a = {4, 1, 2, 2, 4, 4, 4, 4, 1, 2, 4, 2};
-		//System.out.println(s.solution(4, 3, a));
 		
-		int k = 3; int[] score = {10, 100, 20, 150, 1, 100, 200};
-		s.solution(k, score);
+		int[][] b = {{0,0,0,0,0},{0,0,1,0,3},{0,2,5,0,1},{4,2,4,4,2},{3,5,1,3,1}};
+		int[] move = {1,5,3,5,1,2,1,4};
+		
+		s.solution(b, move);
 
 	}
 }
 
+
+/* [0,0,0,0,0]
+ * [0,0,1,0,3]
+ * [0,2,5,0,1]
+ * [4,2,4,4,2]
+ * [3,5,1,3,1]
+ *  1 2 3 4 5
+ *  
+ * [1,5,3,5,1,2,1,4]
+ * */
+
+
+// 4
+// 2
+// 4
+
 class Solution {
-    public int[] solution(int k, int[] score) {
-    
-    	/* Queue는 FIFO(First In First Out)구조로 먼저들어온 순서대로 데이터가 나가게 되지만 
-    	 * Priority Queue란 데이터의 우선순위를 정해 우선순위가 높은 순서대로 나가게됩니다 */
-    	PriorityQueue<Integer> queue = new PriorityQueue<Integer>();
-    	int[] answer = new int[score.length];
- 
-    	for(int i = 0 ; i < score.length ; i++) {
-    		
-    		queue.add(score[i]);
-    		if(queue.size() > k) {
-    			queue.poll();
-    		}
-    		
-    		answer[i] = queue.peek();
-    	}
+    public int solution(int[][] board, int[] moves) {
     	
-    	return answer;
+    	Stack<Integer> stack = new Stack<Integer>();
+    	int answer = 0;
+    	
+    	for(int i = 0 ; i < moves.length ; i++) {
+    		for(int j = 0 ; j < board.length ; j++) {
+    			int x = moves[i]-1;
+    			int val = board[j][x];
+    			
+    			if(val != 0) {
+    				board[j][x] = 0;
+    				if(stack.isEmpty()) {
+    					stack.push(val);
+    				} else {
+    					int bf = stack.peek();
+    					if(bf == val) {
+    						answer += 1;
+    						stack.pop();
+    					} else {
+    						stack.push(val);
+    					}
+    				}
+    				
+    				break;
+     			}
+    		}
+    	}
+        return answer*2;
     }
 }
-
-
-
-
-
-
-
