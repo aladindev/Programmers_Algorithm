@@ -23,44 +23,26 @@ public class Main {
 
 class Solution {
     public int[] solution(int k, int[] score) {
+    
+    	//k:3	score[10, 100, 20, 150, 1, 100, 200]
+    	ArrayList<Integer> rank = new ArrayList<Integer>();
+    	int[] answer = new int[score.length];
     	
-        int[] answer = new int[score.length];
-        
-        //k = 3	 score = {10, 100, 20, 150, 1, 100, 200}
-        int[] arr = new int[k];
-
-        answer[0] = score[0];
-      	arr[0] = score[0];
-      	int min = arr[0];
-      	
-        for(int i = 1 ; i < k ; i++) {
-        	if(min < score[i]) {
-        		answer[i] = min;
-        		arr[i] = score[i];
-        	} else {
-        		answer[i] = score[i];
-        		int tmp = arr[i-1];
-        		arr[i-1] = score[i];
-        		arr[i] = tmp;
-        	}
-        }
-        //test
-//        for(int i : arr) System.out.print(i + " ");
-//        System.out.println();
-//        for(int i : answer) System.out.print(i + " ");
-//        System.out.println();
-        
-        
-        for(int i = k ; i < score.length ; i++) {
-        	if(arr[0] <= score[i]) {
-        		arr[0] = score[i];
-        		Arrays.sort(arr);
-        	} 
-        	answer[i] = arr[0];
-        }
-
-        
-        return answer;
+    	
+    	for(int i = 0 ; i < score.length ; i++) {
+    		if(rank.size() < k) {
+    			rank.add(score[i]);
+    			
+    		} else {
+    			if(rank.get(0) < score[i]) {
+    				rank.remove(0);
+    				rank.add(score[i]);
+    			}
+    		}
+    		Collections.sort(rank);
+    		answer[i] = rank.get(0);
+    	}
+    	return answer;
     }
 }
 
