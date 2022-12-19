@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.PriorityQueue;
 
 public class Main {
 
@@ -24,24 +25,21 @@ public class Main {
 class Solution {
     public int[] solution(int k, int[] score) {
     
-    	//k:3	score[10, 100, 20, 150, 1, 100, 200]
-    	ArrayList<Integer> rank = new ArrayList<Integer>();
+    	/* Queue는 FIFO(First In First Out)구조로 먼저들어온 순서대로 데이터가 나가게 되지만 
+    	 * Priority Queue란 데이터의 우선순위를 정해 우선순위가 높은 순서대로 나가게됩니다 */
+    	PriorityQueue<Integer> queue = new PriorityQueue<Integer>();
     	int[] answer = new int[score.length];
-    	
-    	
+ 
     	for(int i = 0 ; i < score.length ; i++) {
-    		if(rank.size() < k) {
-    			rank.add(score[i]);
-    			
-    		} else {
-    			if(rank.get(0) < score[i]) {
-    				rank.remove(0);
-    				rank.add(score[i]);
-    			}
+    		
+    		queue.add(score[i]);
+    		if(queue.size() > k) {
+    			queue.poll();
     		}
-    		Collections.sort(rank);
-    		answer[i] = rank.get(0);
+    		
+    		answer[i] = queue.peek();
     	}
+    	
     	return answer;
     }
 }
