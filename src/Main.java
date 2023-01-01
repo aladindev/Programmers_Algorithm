@@ -1,10 +1,9 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Main {
 
@@ -12,52 +11,91 @@ public class Main {
 
 		Solution s = new Solution();
 
-		int[] stages = {2, 1, 2, 6, 2, 4, 3, 3};
+		String[] survey = {"AN", "CF", "MJ", "RT", "NA"};
+		int[] choices = {5, 3, 2, 7, 5};
 		
-		//5	[2, 4]	[1, 3, 5]
-		int[] a = {1, 2};
-		int[] b = {2, 3};
-		s.solution(3, a, b);
+		s.solution(survey, choices);
+		
 	}
 }
 
 
-class Solution {
-    public int solution(int n, int[] lost, int[] reserve) {
-        int answer = n - lost.length;
+//지표 번호	성격 유형
+//1번 지표	라이언형(R), 튜브형(T)
+//2번 지표	콘형(C), 프로도형(F)
+//3번 지표	제이지형(J), 무지형(M)
+//4번 지표	어피치형(A), 네오형(N)
 
-        Arrays.sort(lost);
-        Arrays.sort(reserve);
+class Solution {
+    public String solution(String[] survey, int[] choices) {
+        String answer = "";
         
-        for(int i = 0 ; i < lost.length ; i++) {
-        	for(int j = 0 ; j < reserve.length ; j++) {
-        		if(lost[i] == reserve[j]) {
-        			reserve[j] = -1;
-        			lost[i] = -1;
-        			answer+=1;
-        			break;
-        		}
-        	}
+        Map<Integer, Integer> scoreMap = new HashMap<>();
+        scoreMap.put(1, 3);
+        scoreMap.put(2, 2);
+        scoreMap.put(3, 1);
+        scoreMap.put(4, 0);
+        scoreMap.put(5, -1);
+        scoreMap.put(6, -2);
+        scoreMap.put(7, -3);
+        
+        
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        map.put('R', 0);
+        map.put('T', 0);
+        map.put('C', 0);
+        map.put('F', 0);
+        map.put('J', 0);
+        map.put('M', 0);
+        map.put('A', 0);
+        map.put('N', 0);
+        
+//        Iterator<Map.Entry<Character, Integer>> test1 = map.entrySet().iterator();
+//        while(test1.hasNext()) {
+//        	Entry<Character, Integer> e = test1.next();
+//        	System.out.println(e.getKey() + " / " + e.getValue());
+//        }
+//        
+//        System.out.println("======");
+        
+        
+        for(int i = 0 ; i < survey.length ; i++) {
+        	char[] cArr = survey[i].toCharArray();
+        	char key = cArr[0];
+        	map.put(key, map.getOrDefault(key, 0)+ scoreMap.get(choices[i]));
         }
         
-        for(int i : reserve) {
-        	System.out.println(">>" + i);
-        }
+
+//        Iterator<Map.Entry<Character, Integer>> test2 = map.entrySet().iterator();
+//        while(test2.hasNext()) {
+//        	Entry<Character, Integer> e = test2.next();
+//        	System.out.println(e.getKey() + " / " + e.getValue());
+//        }
         
-        for(int i = 0 ; i < lost.length ; i++) {
-        	int lostVal = lost[i];
+        Iterator<Map.Entry<Character, Integer>> iter = map.entrySet().iterator();
+        
+        while(iter.hasNext()) {
+        	Entry<Character, Integer> entry = iter.next();
+        	char f = entry.getKey();
+        	int fVal = entry.getValue();
         	
-        	for(int j = 0 ; j < reserve.length ; j++) {
-    			if(reserve[j]-1 == lostVal || reserve[j]+1 == lostVal) {
-    				reserve[j] = -1;
-    				answer += 1;
-    				break;
-    			}
-        		
+        	entry = iter.next();
+        	
+        	char s = entry.getKey();
+        	int sVal = entry.getValue();
+        	
+        	if(fVal > sVal) {
+        		answer += f;
+        	} else if(sVal > fVal) {
+        		answer += s;
+        	} else { // 같은 경우 
+        		answer += f<s ? f : s;
         	}
+        	
         }
         
-        System.out.println(answer);
+        //System.out.println(answer);
+        
         return answer;
     }
 }
