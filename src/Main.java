@@ -1,9 +1,7 @@
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Main {
 
@@ -11,91 +9,86 @@ public class Main {
 
 		Solution s = new Solution();
 
-		String[] survey = {"AN", "CF", "MJ", "RT", "NA"};
-		int[] choices = {5, 3, 2, 7, 5};
-		
-		s.solution(survey, choices);
+		String d = "1D2S3T*";
+		System.out.println(s.solution(d));
+				
 		
 	}
 }
 
+//점수는 0에서 10 사이의 정수이다.
+//보너스는 S, D, T 중 하나이다.
+//옵선은 *이나 # 중 하나이며, 없을 수도 있다.
 
-//지표 번호	성격 유형
-//1번 지표	라이언형(R), 튜브형(T)
-//2번 지표	콘형(C), 프로도형(F)
-//3번 지표	제이지형(J), 무지형(M)
-//4번 지표	어피치형(A), 네오형(N)
 
 class Solution {
-    public String solution(String[] survey, int[] choices) {
-        String answer = "";
-        
-        Map<Integer, Integer> scoreMap = new HashMap<>();
-        scoreMap.put(1, 3);
-        scoreMap.put(2, 2);
-        scoreMap.put(3, 1);
-        scoreMap.put(4, 0);
-        scoreMap.put(5, -1);
-        scoreMap.put(6, -2);
-        scoreMap.put(7, -3);
-        
-        
-        Map<Character, Integer> map = new LinkedHashMap<>();
-        map.put('R', 0);
-        map.put('T', 0);
-        map.put('C', 0);
-        map.put('F', 0);
-        map.put('J', 0);
-        map.put('M', 0);
-        map.put('A', 0);
-        map.put('N', 0);
-        
-//        Iterator<Map.Entry<Character, Integer>> test1 = map.entrySet().iterator();
-//        while(test1.hasNext()) {
-//        	Entry<Character, Integer> e = test1.next();
-//        	System.out.println(e.getKey() + " / " + e.getValue());
-//        }
-//        
-//        System.out.println("======");
-        
-        
-        for(int i = 0 ; i < survey.length ; i++) {
-        	char[] cArr = survey[i].toCharArray();
-        	char key = cArr[0];
-        	map.put(key, map.getOrDefault(key, 0)+ scoreMap.get(choices[i]));
-        }
-        
+    public int solution(String dartResult) {
+    	
+    	
 
-//        Iterator<Map.Entry<Character, Integer>> test2 = map.entrySet().iterator();
-//        while(test2.hasNext()) {
-//        	Entry<Character, Integer> e = test2.next();
-//        	System.out.println(e.getKey() + " / " + e.getValue());
-//        }
-        
-        Iterator<Map.Entry<Character, Integer>> iter = map.entrySet().iterator();
-        
-        while(iter.hasNext()) {
-        	Entry<Character, Integer> entry = iter.next();
-        	char f = entry.getKey();
-        	int fVal = entry.getValue();
-        	
-        	entry = iter.next();
-        	
-        	char s = entry.getKey();
-        	int sVal = entry.getValue();
-        	
-        	if(fVal > sVal) {
-        		answer += f;
-        	} else if(sVal > fVal) {
-        		answer += s;
-        	} else { // 같은 경우 
-        		answer += f<s ? f : s;
-        	}
-        	
-        }
-        
-        //System.out.println(answer);
-        
+    	
+    	String[] options = dartResult.split("[0-9]");
+    	String[] nums = dartResult.replaceAll("[^0-9]", " ").split(" ");
+    	int answer = 0;
+    	
+    	
+    	List<String> optList = new ArrayList<>(); 
+    	for(String s : options) {
+    		if(!"".equals(s)) {
+    			optList.add(s);
+    		}
+    	}
+    	
+    	List<Integer> numList = new ArrayList<>();
+    	for(String s : nums) {
+    		if(!"".equals(s)) {
+    			numList.add(Integer.parseInt(s));
+    		}
+    	}
+    	
+    
+//    	점수는 0에서 10 사이의 정수이다.
+//    	보너스는 S, D, T 중 하나이다.
+//    	옵선은 *이나 # 중 하나이며, 없을 수도 있다.
+    	//1S*2T*3S
+    	//1^1 * 2 * 2 + 2^3 * 2 + 3^1
+    	
+//    	1S2D*3T* //72
+//    	1S*2D*3T* //74
+    	
+    	//1S2D*3T*
+    	//1^1*2 + 2^2*2*2 + 3^3*2 = 2 + 16 + 54 = 72
+    	
+    	//1D2S3T*
+    	//1^2 + 2^1*2 + 3^3*2 = 1 + 4 + 54 = 59
+    	
+    	
+    	int bf = 0;
+    	for(int i = 0 ; i < numList.size() ; i++) {
+    		String str = optList.get(i);
+    		int temp = 0;
+    		int val = numList.get(i);
+    		for(int j = 0 ; j < str.length() ; j++) {
+    			
+    			char c = str.charAt(j);
+    			
+    			if(c == 'S') {
+    				temp = val;
+    			} else if(c == 'D') {
+    				temp = (int)Math.pow(val, 2);
+    			} else if(c == 'T') {
+    				temp = (int)Math.pow(val, 3);
+    			} else if(c == '*') {
+    				temp = bf + temp*2; 
+    			} else if(c == '#') {
+    				temp = temp*-1;
+    			}
+    		}
+    		System.out.println(temp);
+    		bf = temp - bf;
+    		answer += temp;
+    	}    	
+    	
         return answer;
     }
 }
