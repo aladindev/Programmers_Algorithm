@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Arrays;
 
 
 public class Main {
@@ -7,21 +8,23 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
-		s.solution(2);
 	}
 }
 
 class Solution {
-    public int solution(int n) {
-        int answer = pibo(4);
+    public int solution(int[] citations) {
+        int answer = 0;
+        Arrays.sort(citations);
+        int length = citations.length;
+        int cnt = 0;
         
-        System.out.println(answer);
+        for(int i = 0 ; i < length ; i++) {
+        	for(int j = 0 ; j < length ; j++) {
+        		// ...
+        	}
+        		
+        }
+        
         return answer;
-    }
-    public int pibo(int n) {
-    	if(n == 0) return 0;
-    	if(n == 1) return 1;
-    	
-    	return pibo(n-1) + pibo(n-2);
     }
 }
