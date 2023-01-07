@@ -1,126 +1,71 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 
 public class Main {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
 
+		String today = "2022.05.19";
+		String[] terms = {"A 6", "B 12", "C 3"};
+		String[] p = {"2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"};
+		
+		s.solution(today, terms, p);
 				
 		
 	}
 }
-
-//class Solution {
-//    public int solution(String dartResult) {
-//    	
-//    	
-//    	String[] options = dartResult.split("[0-9]");
-//    	String[] nums = dartResult.replaceAll("[^0-9]", " ").split(" ");
-//    	int answer = 0;
-//    	
-//    	
-//    	List<String> optList = new ArrayList<>(); 
-//    	for(String s : options) {
-//    		if(!"".equals(s)) {
-//    			optList.add(s);
-//    		}
-//    	}
-//    	
-//    	List<Integer> numList = new ArrayList<>();
-//    	for(String s : nums) {
-//    		if(!"".equals(s)) {
-//    			numList.add(Integer.parseInt(s));
-//    		}
-//    	}
-//    	
-//    
-////    	점수는 0에서 10 사이의 정수이다.
-////    	보너스는 S, D, T 중 하나이다.
-////    	옵선은 *이나 # 중 하나이며, 없을 수도 있다.
-//    	//1S*2T*3S
-//    	//1^1 * 2 * 2 + 2^3 * 2 + 3^1
-//    	
-////    	1S2D*3T* //72
-////    	1S*2D*3T* //74
-//    	
-//    	//1S2D*3T*
-//    	//1^1*2 + 2^2*2*2 + 3^3*2 = 2 + 16 + 54 = 72
-//    	
-//    	
-//    	int bf = 0;
-//    	for(int i = 0 ; i < numList.size() ; i++) {
-//    		String str = optList.get(i);
-//    		int temp = 0;
-//    		int val = numList.get(i);
-//    		for(int j = 0 ; j < str.length() ; j++) {
-//    			
-//    			char c = str.charAt(j);
-//    			
-//    			if(c == 'S') {
-//    				temp = val;
-//    			} else if(c == 'D') {
-//    				temp = (int)Math.pow(val, 2);
-//    			} else if(c == 'T') {
-//    				temp = (int)Math.pow(val, 3);
-//    			} else if(c == '*') {
-//    				temp = bf + temp*2;
-//    			} else if(c == '#') {
-//    				temp = temp*-1;
-//    			}
-//    		}
-//    		bf = temp;
-//    		answer += temp;
-//    	}    	
-//    	
-//        return answer;
-//    }
-//}
-
 class Solution {
-    public String[] solution(String[] strings, int n) {
-        String[] answer = null;
+    public int[] solution(String today, String[] terms, String[] privacies) throws ParseException {
+        int[] answer = null;
         
-        Map<String, Character> map = new HashMap<>();
+        Map<String, Integer> map = new LinkedHashMap<>();
         
-        for(String s : strings) {
-        	map.put(s, s.charAt(n));
+        for(int i = 0 ; i < terms.length ; i++) {
+        	String[] temp = terms[i].split(" ", -1);
+        	
+        	map.put(temp[0], Integer.parseInt(temp[1]));
         }
         
-        List<Entry<String, Character>> list = new ArrayList<>(map.entrySet()); 
-        answer = new String[list.size()];
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy.MM.dd");
+        Date date = sf.parse(today);
+        Calendar tdCal = Calendar.getInstance();
+        tdCal.setTime(date);
+        tdCal.add(Calendar.DATE, 1);
         
-        Collections.sort(list, new CustomComparator());
+        String result = "";
+        StringBuilder sb = new StringBuilder(result);
         
-        int idx = 0;
-        for(Entry<String, Character> e : list) {
-        	answer[idx++] = e.getKey();
+        
+        
+        for(int j = 0 ; j < privacies.length ; j++) {
+        	String[] arr = privacies[j].split(" ");
+        	
+            Date date2 = sf.parse(arr[0]);
+            Calendar stdrCal = Calendar.getInstance();
+            stdrCal.setTime(date2);
+            stdrCal.add(Calendar.MONTH, map.get(arr[1]));
+            
+            
+            if(tdCal.compareTo(stdrCal) > 0) {
+            	sb.append((j+1) + " ");
+            }
+        }
+        
+        String[] strArr = sb.toString().split(" ");
+        answer = new int[strArr.length];
+        
+        for(int k = 0 ; k < answer.length ; k++) {
+        	answer[k] = Integer.parseInt(strArr[k]);
         }
         
         return answer;
     }
 }
-
-
-//class CustomComparator implements Comparator<Entry<String, Character>> {
-//
-//	@Override
-//	public int compare(Entry<String, Character> o1, Entry<String, Character> o2) {
-//		
-//		if(o1.getValue().compareTo(o2.getValue()) == 0) {
-//			return o1.getKey().compareTo(o2.getKey());
-//		}
-//		
-//		return o1.getValue().compareTo(o2.getValue());
-//	}
-//	
-//	
-//}
