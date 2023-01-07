@@ -7,27 +7,21 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
-		s.solution(15);
+		s.solution(2);
 	}
 }
 
 class Solution {
     public int solution(int n) {
-        int answer = 0;
+        int answer = pibo(4);
         
-        String org = Integer.toString(n, 2);
-        StringBuilder sb = new StringBuilder();
-        
-        System.out.println(org);
-        
-        if(org.indexOf("0") < 0) {
-        	sb.append("10");
-        	sb.append(org.substring(1, org.length()));
-        }
-        
-        System.out.println(sb.toString());
-        
-        
+        System.out.println(answer);
         return answer;
+    }
+    public int pibo(int n) {
+    	if(n == 0) return 0;
+    	if(n == 1) return 1;
+    	
+    	return pibo(n-1) + pibo(n-2);
     }
 }
