@@ -1,3 +1,4 @@
+package Level1JavaFile;
 //[1차] 다트 게임
 //문제 설명
 //다트 게임
