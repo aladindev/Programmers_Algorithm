@@ -77,6 +77,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -147,59 +148,47 @@ import java.util.Set;
 //제한시간 안내
 //정확성 테스트 : 10초
 
+
 class Solution_3 {
     public int[] solution(String[] id_list, String[] report, int k) {
         int[] answer = new int[id_list.length];
         
-        
-        
-/* 
-         muzi frodo
-         apeach frodo 
-         frodo neo 
-         muzi neo 
-         apeach muzi
-        
-*/
-        
-        // 초기화 
-        LinkedHashMap<String, Integer> lhm = new LinkedHashMap<>();
+        // 신고자 별 받는 메일 개수 담는 
+        LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
         for(String s : id_list) {
-        	lhm.put(s,  0);
+        	result.put(s,  0);
         }
         
-        List<Set<String>> setList = new ArrayList<>();
+        //개인별 신고자 id를 담고 있는 Set
+        Map<String, Set<String>> map = new LinkedHashMap<>();
+
+	    for(int i = 0 ; i < id_list.length ; i++) {
+	    	map.put(id_list[i], new LinkedHashSet<>());
+	    }
         
-        for(int i = 0 ; i < id_list.length ; i++) {
-        	setList.add(new LinkedHashSet<>());
-        }
-        
-        for(int i = 0 ; i < id_list.length ; i++) {
-        	for(String s : report) {
-        		String[] arr = s.split(" ");
-        		
-        		if(id_list[i].equals(arr[1])) {
-        			setList.get(i).add(arr[0]);
-        		}
-        	}
-        }
-        
-        for(int i = 0 ; i < setList.size() ; i++) {
-        	Set<String> set = setList.get(i);
+        for(int i = 0 ; i < report.length ; i++) {
+        	String[] arr = report[i].split(" ");
+        	Set<String> newSet = map.get(arr[1]);
         	
-        	if(set.size() >= k) {
-        		Iterator<String> iter = set.iterator();
+        	if(!newSet.contains(arr[0])) {
+        		newSet.add(arr[0]);
+        	}
+        	map.put(arr[1], newSet);
+        }
+        
+        for(int i = 0 ; i < map.size() ; i++) {
+        	Set<String> s = map.get(id_list[i]);
+        	if(s.size() >= k) {
+        		Iterator<String> iter = s.iterator();
         		while(iter.hasNext()) {
-        			String id = iter.next();
-        			lhm.put(id, lhm.getOrDefault(id, 0)+1);
-        			
+        			String key = iter.next();
+        			result.put(key, result.getOrDefault(key, 0)+1);
         		}
         	}
         }
         
         int idx = 0;
-        for(Entry<String, Integer> e : lhm.entrySet()) {
-        	//System.out.println(e.getKey() + " / " + e.getValue());
+        for(Entry<String, Integer> e : result.entrySet()) {
         	answer[idx++] = e.getValue();
         }
         return answer;
