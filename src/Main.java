@@ -29,7 +29,7 @@ class Solution {
         int[] answer = new int[id_list.length];
         
         
-  
+ 
         // 초기화 
         LinkedHashMap<String, Integer> lhm = new LinkedHashMap<>();
         for(String s : id_list) {
