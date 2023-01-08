@@ -9,6 +9,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 
+
+// 시간초과이긴 하지만 맞춘게 어디냐..
 public class Main {
 
 	public static void main(String[] args) throws IOException, ParseException {
@@ -38,17 +40,14 @@ class Solution {
 */
         
         // 초기화 
-        List<LinkedHashMap<String, Integer>> idList = new ArrayList<>();
+        LinkedHashMap<String, Integer> lhm = new LinkedHashMap<>();
         for(String s : id_list) {
-        	LinkedHashMap<String, Integer> lhm = new LinkedHashMap<>();
         	lhm.put(s,  0);
-        	idList.add(lhm);
         }
-        
         
         List<Set<String>> setList = new ArrayList<>();
         
-        for(int i = 0 ; i < idList.size() ; i++) {
+        for(int i = 0 ; i < id_list.length ; i++) {
         	setList.add(new LinkedHashSet<>());
         }
         
@@ -69,26 +68,19 @@ class Solution {
         		Iterator<String> iter = set.iterator();
         		while(iter.hasNext()) {
         			String id = iter.next();
-        			LinkedHashMap<String, Integer> lh = idList.get(i);
-        			//System.out.println(id + " / " + (lh.getOrDefault(id, 0)+1));
+        			lhm.put(id, lhm.getOrDefault(id, 0)+1);
         			
-        			idList.get(i).put(id, lh.getOrDefault(id, 0)+1);
-        			System.out.println(idList.get(i).get(id));
         		}
         	}
         }
         
-
-        Iterator<LinkedHashMap<String, Integer>> t = idList.iterator();
-        while(t.hasNext()) {
-        	List<Entry<String, Integer>> l = new ArrayList<>(t.next().entrySet());
-        	Iterator<Entry<String, Integer>> tt = l.iterator();
-        	while(tt.hasNext()) {
-        		Entry<String, Integer> e = tt.next();
-        		System.out.println(e.getKey() + " / " + e.getValue());
-        	}
+        int idx = 0;
+        for(Entry<String, Integer> e : lhm.entrySet()) {
+        	//System.out.println(e.getKey() + " / " + e.getValue());
+        	answer[idx++] = e.getValue();
         }
         
+
         
         
         return answer;
