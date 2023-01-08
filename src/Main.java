@@ -29,16 +29,7 @@ class Solution {
         int[] answer = new int[id_list.length];
         
         
-        
-/* 
-         muzi frodo
-         apeach frodo 
-         frodo neo 
-         muzi neo 
-         apeach muzi
-        
-*/
-        
+  
         // 초기화 
         LinkedHashMap<String, Integer> lhm = new LinkedHashMap<>();
         for(String s : id_list) {
