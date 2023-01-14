@@ -16,21 +16,45 @@ public class Main {
 	}
 }
 
+// 시간초과 
+//class Solution {
+//    public int solution(int n) {
+//        int answer = 0;
+//        
+//        //1001110
+//        
+//        String n2 = Integer.toString(n, 2);
+//        n2 = n2.replaceAll("0", "");
+//        
+//        int cnt = n2.length();
+//        
+//        String tmp = "";
+//        for(int i = n+1 ; i <= 1000000 ; i++) {
+//        	tmp = Integer.toString(i, 2);
+//        	tmp = tmp.replaceAll("0", "");
+//        	
+//        	if(cnt == tmp.length()) {
+//        		answer = i;
+//        		break;
+//        	}
+//        		
+//        }
+//        return answer;
+//    }
+//}
+
+//효율성통과 
 class Solution {
     public int solution(int n) {
         int answer = 0;
         
-        String n2 = Integer.toString(n, 2);
-        n2 = n2.replaceAll("0", "");
+        int cnt = Integer.bitCount(n);
         
-        int cnt = n2.length();
-        
-        String tmp = "";
         for(int i = n+1 ; i <= 1000000 ; i++) {
-        	tmp = Integer.toString(i, 2);
-        	tmp = tmp.replaceAll("0", "");
         	
-        	if(cnt == tmp.length()) {
+        	int cnt_2 = Integer.bitCount(i);
+        	
+        	if(cnt == cnt_2) {
         		answer = i;
         		break;
         	}
