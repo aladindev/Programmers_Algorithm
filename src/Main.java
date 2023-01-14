@@ -12,72 +12,30 @@ public class Main {
 
 		String a = "  3peoPle";
 
-		s.solution(a);
+		s.solution(78);
 	}
 }
 
 class Solution {
-    public String solution(String s) {
-        String answer = "";
-        StringBuilder sb = new StringBuilder(answer);
+    public int solution(int n) {
+        int answer = 0;
         
+        String n2 = Integer.toString(n, 2);
+        n2 = n2.replaceAll("0", "");
         
-        //  3peoPle
-        for(int i = 0 ; i < s.length() ; i++) {
-        	char c = s.charAt(i);
+        int cnt = n2.length();
+        
+        String tmp = "";
+        for(int i = n+1 ; i <= 1000000 ; i++) {
+        	tmp = Integer.toString(i, 2);
+        	tmp = tmp.replaceAll("0", "");
         	
-        	if((int)c == (int)' ') {
-        		sb.append(',');
-        		if(i+1 < s.length()) {
-        			if((int)s.charAt(i+1) == (int)' ') {
-        				sb.append(' ');
-        				i+=1;
-        			}
-        		}
-         	} else {
-        		sb.append(c);
+        	if(cnt == tmp.length()) {
+        		answer = i;
+        		break;
         	}
-        	
+        		
         }
-        
-        String[] strArr = sb.toString().replaceAll(",", ", ").split(",");
-        sb.setLength(0);
-        
-        
-        for(int i = 0 ; i < strArr.length ; i++) {
-        	String str = strArr[i];
-        	
-        	char c = ' ';
-        	if(str.length()>0) {
-        		c = str.charAt(0);
-        	} 
-        	
-        	if(c >= (int)'0' && c<= (int)'9') {
-        		sb.append(c);
-        		if(str.length() > 1) {
-        			sb.append(str.substring(1, str.length()).toLowerCase());	
-        		}
-        	} else if((int)c == ' ') {
-        		String a = str.replaceAll("[a-zA-Z0-9]", ""); //순수 공백 
-        		String b = str.replace(" ", ""); //순수 문자열 
-        		
-        		sb.append(a);
-        		if(b.length() > 0) {
-        			sb.append(String.valueOf(b.charAt(0)).toUpperCase());
-        			if(b.length() > 1) {
-        				sb.append(b.substring(1, b.length()).toLowerCase());
-        			}
-        		}
-        		
-        	} else {
-        		sb.append(String.valueOf(c).toUpperCase());
-        		
-        		if(str.length() > 1) {
-        			sb.append(str.substring(1, str.length()).toLowerCase());
-        		}
-        	}
-        }
-        
-        return sb.toString();
+        return answer;
     }
 }
