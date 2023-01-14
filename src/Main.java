@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 
 public class Main {
@@ -10,43 +9,44 @@ public class Main {
 
 		Solution s = new Solution();
 
-//		[1, 4, 2]	[5, 4, 4]	29
-//				[1,2]	[3,4]	10
+		s.solution("baabaa");
 
-		int[] a = {1,2};
-		int[] b = {3,4};
-		System.out.println(s.solution(a,b));
+		String t = "baabaa";
+		String te = "aa";
+		System.out.println(s.solution("baabaa"));
 
 	}
 }
-
 class Solution
 {
-	public int solution(int []A, int []B)
+	public int solution(String s)
 	{
-		int answer = 0;
+		int answer = -1;
+		char[] cArr = s.toCharArray();
+		Map<String, String> sMap = new HashMap<>();
 
-		Arrays.sort(A);
-		Integer[] arr = new Integer[B.length];
+		String argTmp = s;
 
 		int idx = 0;
-		for(int i : B) {
-			arr[idx++] = i;
+		for(char c : cArr) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(c);
+			sb.append(c);
+
+			String tmp = sb.toString();
+			if(sMap.get(tmp) == null) {
+				sMap.put(tmp, "");
+			}
 		}
-		Arrays.sort(arr, new CustomComparator());
-
-		for(int i = 0 ; i < A.length ; i++) {
-			answer += A[i]*arr[i];
+		//baabaa
+		for(int i = 0 ; i < argTmp.length() ; i++) {
+			for(String e : sMap.keySet()) {
+				if(argTmp.indexOf(e) > -1) {
+					argTmp = argTmp.replaceAll(e, "");
+				}
+			}
 		}
-		return answer;
+
+		return argTmp.length() == 0 ? 1 : 0;
 	}
-}
-
-class CustomComparator implements Comparator<Integer> {
-
-	@Override
-	public int compare(Integer o1, Integer o2) {
-		return o2.compareTo(o1);
-	}
-
 }
