@@ -8,28 +8,35 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
-		String[] ba = { "ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"};
 
-		String[] tt = {"ac", "ca", "ac", "ac"};
+		System.out.println( s.solution("abracadabra"));
 
-		s.solution(ba);
 
 	}
 }
 class Solution {
-	public int solution(String[] babbling) {
-		String[] can = {"aya", "ye", "woo", "ma"};
+	public int solution(String s) {
 		int answer = 0;
 
-		for(String b : babbling) {
-			for(String c : can) {
-				StringBuilder sb = new StringBuilder(c);
-				sb.append(c);
-				if(b.indexOf(c) > -1 && b.indexOf(sb.toString()) < 0) {
-					b = b.replaceAll(c, " ");
+		while(s.length() > 0) {
+			if(s.length() == 1) {
+				answer+=1;
+				break;
+			}
+			char x = s.charAt(0);
+			int eqCnt = 0;
+			int neCnt = 0;
+			for(int i = 0 ; i < s.length() ; i++) {
+
+				if(x == s.charAt(i)) eqCnt++;
+				else neCnt++;
+
+				if(eqCnt == neCnt) {
+					answer += 1;
+					s=s.substring(i+1, s.length());
+					break;
 				}
 			}
-			answer = "".equals(b.replaceAll(" ", "")) ? answer+1 : answer;
 		}
 
 		return answer;
