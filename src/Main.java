@@ -10,7 +10,7 @@ public class Main {
 		Solution s = new Solution();
 		String[] ba = { "ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"};
 
-		String[] tt = {"hello", "one", "even", "never", "now", "world", "draw"};
+		String[] tt = {"ac", "ca", "ac", "ac"};
 		s.solution(2, tt);
 
 
@@ -28,18 +28,19 @@ class Solution {
 		for(int i = 1 ; i < words.length ; i++) {
 			who = ++who%n == 0 ? n : who%n;
 
-			if(sSet.contains(words[i])) {
-				answer[0] = who;
-				answer[1] = (i%n)+1;
-				break;
-			}
-
 			char lC = bfWord.charAt(bfWord.length()-1);
 			char fC = words[i].charAt(0);
 
 			if(lC != fC) {
 				answer[0] = who;
-				answer[1] = sSet.size()/n+1;
+				answer[1] = sSet.size()/n + 1;
+				break;
+			}
+
+
+			if(sSet.contains(words[i])) {
+				answer[0] = who;
+				answer[1] = sSet.size()/n + 1;
 				break;
 			}
 			sSet.add(words[i]);
