@@ -10,24 +10,41 @@ public class Main {
 		Solution s = new Solution();
 		String[] ba = { "ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"};
 
-		System.out.println(s.solution(ba));
+		String[] tt = {"hello", "one", "even", "never", "now", "world", "draw"};
+		s.solution(2, tt);
+
+
 	}
 }
-
 class Solution {
-	public int solution(String[] babbling) {
-		int answer = 0;
-		String[] can = { "aya", "ye", "woo", "ma" };
+	public int[] solution(int n, String[] words) {
+		int[] answer = new int[2];
 
-		for(String b : babbling) {
-			for(String c : can) {
-				if(b.indexOf(c) > -1) {
-					b.replaceAll(c, "");
-				}
+		Set<String> sSet = new LinkedHashSet<>();
+		int who = 1;
+		sSet.add(words[0]);
+		String bfWord = words[0];
+
+		for(int i = 1 ; i < words.length ; i++) {
+			who = ++who%n == 0 ? n : who%n;
+
+			if(sSet.contains(words[i])) {
+				answer[0] = who;
+				answer[1] = (i%n)+1;
+				break;
 			}
-			answer = b.length() > 0 ? answer : ++answer;
-		}
 
+			char lC = bfWord.charAt(bfWord.length()-1);
+			char fC = words[i].charAt(0);
+
+			if(lC != fC) {
+				answer[0] = who;
+				answer[1] = sSet.size()/n+1;
+				break;
+			}
+			sSet.add(words[i]);
+			bfWord = words[i];
+		}
 		return answer;
 	}
 }
