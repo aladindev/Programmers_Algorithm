@@ -11,41 +11,27 @@ public class Main {
 		String[] ba = { "ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"};
 
 		String[] tt = {"ac", "ca", "ac", "ac"};
-		s.solution(2, tt);
 
+		s.solution(ba);
 
 	}
 }
 class Solution {
-	public int[] solution(int n, String[] words) {
-		int[] answer = new int[2];
+	public int solution(String[] babbling) {
+		String[] can = {"aya", "ye", "woo", "ma"};
+		int answer = 0;
 
-		Set<String> sSet = new LinkedHashSet<>();
-		int who = 1;
-		sSet.add(words[0]);
-		String bfWord = words[0];
-
-		for(int i = 1 ; i < words.length ; i++) {
-			who = ++who%n == 0 ? n : who%n;
-
-			char lC = bfWord.charAt(bfWord.length()-1);
-			char fC = words[i].charAt(0);
-
-			if(lC != fC) {
-				answer[0] = who;
-				answer[1] = sSet.size()/n + 1;
-				break;
+		for(String b : babbling) {
+			for(String c : can) {
+				StringBuilder sb = new StringBuilder(c);
+				sb.append(c);
+				if(b.indexOf(c) > -1 && b.indexOf(sb.toString()) < 0) {
+					b = b.replaceAll(c, " ");
+				}
 			}
-
-
-			if(sSet.contains(words[i])) {
-				answer[0] = who;
-				answer[1] = sSet.size()/n + 1;
-				break;
-			}
-			sSet.add(words[i]);
-			bfWord = words[i];
+			answer = "".equals(b.replaceAll(" ", "")) ? answer+1 : answer;
 		}
+
 		return answer;
 	}
 }
