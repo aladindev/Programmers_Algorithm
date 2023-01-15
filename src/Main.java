@@ -19,11 +19,11 @@ class Solution {
 
 		Stack<Character> st = new Stack<>();
 
-		for(char c : s.toCharArray()) {
+		for(char c : s.toCharArray()) { // 스택 초기화
 			st.add(c);
 		}
 		int cnt = 0;
-		while(st.size() > 0) {
+		while(st.size() > 0) { // 스택이 존재할 때까지 반복
 
 			if(cnt == 0) {
 				if(st.peek() == '(') return false;
@@ -46,6 +46,6 @@ class Solution {
 			}
 		}
 
-		return st.size() == 0 ? true : false;
+		return answer;
 	}
 }
