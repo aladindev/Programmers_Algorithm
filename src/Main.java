@@ -5,47 +5,26 @@ import java.util.*;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException, ParseException {
+	public static <K> void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
-		s.solution("(())()");
-
+		//s.solution("(())()");
 	}
 }
 
+
 class Solution {
-	boolean solution(String s) {
-		boolean answer = true;
+	public int solution(int[] nums) {
+		int answer = 0;
 
-		Stack<Character> st = new Stack<>();
+		int n2 = nums.length/2;
 
-		for(char c : s.toCharArray()) { // 스택 초기화
-			st.add(c);
-		}
-		int cnt = 0;
-		while(st.size() > 0) { // 스택이 존재할 때까지 반복
+		Set<Integer> set = new HashSet<>();
 
-			if(cnt == 0) {
-				if(st.peek() == '(') return false;
-				cnt++;
-				char c = st.pop();
-			}
-
-			if(st.peek() == '(') {
-				if(cnt>=st.size()) {
-					cnt = st.size();
-				}
-				for(int j = 0 ; j < cnt ; j++) {
-					char p = st.pop();
-					if(p == ')') return false;
-				}
-				cnt = 0;
-			} else {
-				cnt+=1;
-				st.pop();
-			}
+		for(int n : nums) {
+			set.add(n);
 		}
 
-		return answer;
+		return set.size()>=n2 ? n2 : set.size();
 	}
 }
