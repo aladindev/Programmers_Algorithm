@@ -8,32 +8,41 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
-		int[] a = {2, 1, 1, 2, 3, 1, 2, 3, 1};
-		String b = "211231231";
-		System.out.println(b.substring(0, 0));
-		System.out.println(s.solution(a));
+
+		int[] a = {1,2,3,4};
+		s.solution(a);
 	}
 }
 
 
 class Solution {
-	public int solution(int[] ingredient) {
+	public int solution(int[] nums) {
 		int answer = 0;
-		Stack<Integer> stack = new Stack<>();
 
-		for(int i : ingredient) {
-			stack.add(i);
-
-			if(stack.size() > 3) {
-				if(stack.get(stack.size()-4) == 1
-				 &&stack.get(stack.size()-3) == 2
-				 &&stack.get(stack.size()-2) == 3
-				 &&stack.get(stack.size()-1) == 1 ) {
-					answer++;
-					stack.pop();stack.pop();stack.pop();stack.pop();
+		Set<Integer> set = new HashSet<>();
+		for(int i = 0 ; i < nums.length ; i++) {
+			int f = nums[i];
+			for(int j = i+1 ; j < nums.length ; j++) {
+				int s = nums[j];
+				for(int k = j+1 ; k < nums.length ; k++) {
+					int t = nums[k];
+					answer = isSosu(f+s+t) ? answer+=1 : answer;
+					set.add(f+s+t);
 				}
 			}
 		}
+
 		return answer;
+	}
+
+	public Boolean isSosu(int a) {
+
+		Boolean result = true;
+		for(int i = 2 ; i < a ; i++) {
+			if(a%i==0) {
+				return false;
+			}
+		}
+		return result;
 	}
 }
