@@ -11,7 +11,7 @@ public class Main {
 		int[] a = {2, 1, 1, 2, 3, 1, 2, 3, 1};
 		String b = "211231231";
 		System.out.println(b.substring(0, 0));
-		s.solution(a);
+		System.out.println(s.solution(a));
 	}
 }
 
@@ -19,24 +19,21 @@ public class Main {
 class Solution {
 	public int solution(int[] ingredient) {
 		int answer = 0;
+		Stack<Integer> stack = new Stack<>();
 
-		StringBuilder sb = new StringBuilder();
-		for(int i = 0 ; i < ingredient.length ; i++) {
-			sb.append(ingredient[i]);
+		for(int i : ingredient) {
+			stack.add(i);
+
+			if(stack.size() > 3) {
+				if(stack.get(stack.size()-4) == 1
+				 &&stack.get(stack.size()-3) == 2
+				 &&stack.get(stack.size()-2) == 3
+				 &&stack.get(stack.size()-1) == 1 ) {
+					answer++;
+					stack.pop();stack.pop();stack.pop();stack.pop();
+				}
+			}
 		}
-		String str = sb.toString();
-		sb.setLength(0);
-		int idx = str.indexOf("1231");
-
-		while(idx > -1) {
-			answer++;
-			sb.setLength(0);
-			sb.append(str.substring(0, idx));
-			sb.append(str.substring(idx+"1231".length()));
-			str = sb.toString();
-			idx = str.indexOf("1231");
-		}
-
 		return answer;
 	}
 }
