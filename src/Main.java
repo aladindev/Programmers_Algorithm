@@ -8,41 +8,29 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
-
-		int[] a = {1,2,3,4};
-		s.solution(a);
+		s.solution("banana");
 	}
 }
 
 
 class Solution {
-	public int solution(int[] nums) {
+	public int solution(String s) {
 		int answer = 0;
 
-		Set<Integer> set = new HashSet<>();
-		for(int i = 0 ; i < nums.length ; i++) {
-			int f = nums[i];
-			for(int j = i+1 ; j < nums.length ; j++) {
-				int s = nums[j];
-				for(int k = j+1 ; k < nums.length ; k++) {
-					int t = nums[k];
-					answer = isSosu(f+s+t) ? answer+=1 : answer;
-					set.add(f+s+t);
-				}
-			}
+		char first = s.charAt(0);
+		int eqCnt = 0;
+		int neCnt = 0;
+
+		if(s.length() == 1) return answer;
+		String tmpStr = s;
+
+
+		//banana
+		int idx = 0;
+		while( s.length() > 0) {
+			
 		}
 
 		return answer;
-	}
-
-	public Boolean isSosu(int a) {
-
-		Boolean result = true;
-		for(int i = 2 ; i < a ; i++) {
-			if(a%i==0) {
-				return false;
-			}
-		}
-		return result;
 	}
 }
