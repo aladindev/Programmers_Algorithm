@@ -8,28 +8,33 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
-
-		s.solution(5,3,2);
+		int[] a = {2, 1, 1, 2, 3, 1, 2, 3, 1};
+		String b = "211231231";
+		System.out.println(b.substring(0, 0));
+		s.solution(a);
 	}
 }
 
 
 class Solution {
-	public int solution(int number, int limit, int power) {
+	public int solution(int[] ingredient) {
 		int answer = 0;
-		int[] arr = new int[number+1];
 
-		for(int i = 1 ; i < arr.length ; i++) {
-			int cnt = 0;
-			for(int j = 1 ; j*j <= i ; j++) {
-				if(j*j==i) cnt++;
-				else if(i%j==0) cnt+=2;
-			}
-			arr[i] = cnt>limit? power : cnt;
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0 ; i < ingredient.length ; i++) {
+			sb.append(ingredient[i]);
 		}
+		String str = sb.toString();
+		sb.setLength(0);
+		int idx = str.indexOf("1231");
 
-		for(int a : arr) {
-			answer += a;
+		while(idx > -1) {
+			answer++;
+			sb.setLength(0);
+			sb.append(str.substring(0, idx));
+			sb.append(str.substring(idx+"1231".length()));
+			str = sb.toString();
+			idx = str.indexOf("1231");
 		}
 
 		return answer;
