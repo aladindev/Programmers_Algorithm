@@ -8,25 +8,31 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
+		int[] a = {70, 80, 50};
+		int b = 143;
+		//s.solution(a, 100);
 	}
 }
 
-class Solution {
-	public int solution(int n) {
-		int answer = 1;
 
-		for(int i = 1 ; i <= n ; i++) {
-			int sum = i;
-			for(int j = i+1 ; j <= n ; j++) {
-				sum+=j;
-				if(sum == n) {
-					answer+=1;
-					break;
-				} else if(sum > n) break;
-			}
+class Solution {
+	public int solution(int[] people, int limit) {
+		int answer = 0;
+
+		int u = 0, o = 0, e = 0;
+		double stdr = limit/2;
+		List<Integer> list = new ArrayList<>();
+
+		for(int p : people) {
+			list.add(p);
+		}
+
+		for(Integer i : list) {
+			if(list.contains(limit-i)) {
+				e++;
+			} 
 		}
 
 		return answer;
 	}
 }
-
