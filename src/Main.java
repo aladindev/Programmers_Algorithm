@@ -8,9 +8,7 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
-		int[] a = {50, 70, 80, 50};
-		int b = 143;
-		s.solution(a, 100);
+		//s.solution(a, 100);
 	}
 }
 
@@ -39,11 +37,12 @@ class Solution {
 			}
 		}
 
-		for(int a : list) {
-			System.out.println(a);
-		}
-		System.out.println(answer);
+		double half = limit/2;
+		int overCnt = 0;
+		int underCnt = 0;
+		for(int i = 0 ; i < list.size() ; i++) {
 
-		return answer;
+		}
+		return list.size()>0 ? answer+1 : answer;
 	}
 }
