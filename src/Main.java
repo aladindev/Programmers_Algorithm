@@ -8,7 +8,6 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
-		//s.solution(a, 100);
 	}
 }
 
