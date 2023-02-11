@@ -13,35 +13,22 @@ public class Main {
 
 
 class Solution {
-	public int solution(int[] people, int limit) {
-		int answer = 0;
+	public String solution(String s, String skip, int index) {
+		String answer = "";
+		char[] arr1 = s.toCharArray();
 
-		List<Integer> list = new ArrayList<>();
+		for(char c : arr1) {
+			for(int i = 1 ; i <= index ; i++) {
+				int add = (int)c + i;
+				if(add > 122) {
+					c = (char)97;
+				}
+				char ct = (char)add;
+				if(String.valueOf(ct).equals(skip)) {
 
-		for(int p : people) {
-			list.add(p);
-		}
-
-		for(int i = 0 ; i < list.size() ; i++) {
-			int f = list.get(i);
-
-			int sum = f;
-			for(int j = i+1 ; j < list.size() ; j++) {
-				if(f+list.get(j) == limit) {
-					answer+=1;
-					list.remove(j);
-					list.remove(i);
-					break;
 				}
 			}
 		}
-
-		double half = limit/2;
-		int overCnt = 0;
-		int underCnt = 0;
-		for(int i = 0 ; i < list.size() ; i++) {
-
-		}
-		return list.size()>0 ? answer+1 : answer;
+		return answer;
 	}
 }
