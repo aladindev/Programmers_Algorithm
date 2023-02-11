@@ -8,27 +8,34 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
+		s.solution("aukks", "wbqd", 5);
 	} 
 }
 
 
 class Solution {
 	public String solution(String s, String skip, int index) {
-		String answer = "";
-		char[] arr1 = s.toCharArray();
 
-		for(char c : arr1) {
-			for(int i = 1 ; i <= index ; i++) {
-				int add = (int)c + i;
-				if(add > 122) {
-					c = (char)97;
+		char[] cArr = s.toCharArray();
+
+		for(int i = 0 ; i < cArr.length ; i++) {
+			int k = 1;
+			int idx = index;
+			char tmp = 0;
+			while(k <= idx) {
+				tmp = (char)(cArr[i]+k);
+
+				if((int)tmp > 122) {
+					tmp = (char)97;
 				}
-				char ct = (char)add;
-				if(String.valueOf(ct).equals(skip)) {
-
+				k++;
+				if(skip.indexOf(tmp) > -1) {
+					idx = idx + 1;
+					continue;
 				}
 			}
+			cArr[i] = tmp;
 		}
-		return answer;
+		return String.valueOf(cArr);
 	}
 }
