@@ -3,14 +3,15 @@ import java.text.ParseException;
 import java.util.*;
 
 
-public class Main { 
+public class Main {
 
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
-		s.solution("aukks", "wbqd", 5);
+		System.out.println(s.solution("z", "abcdefghij", 20));
 	} 
 }
+
 
 
 class Solution {
@@ -19,22 +20,21 @@ class Solution {
 		char[] cArr = s.toCharArray();
 
 		for(int i = 0 ; i < cArr.length ; i++) {
-			int k = 1;
-			int idx = index;
-			char tmp = 0;
-			while(k <= idx) {
-				tmp = (char)(cArr[i]+k);
+			int idxTmp = index;
+			char cTmp = 0;
+			for(int j = 1 ; j <= idxTmp ; j++) {
+				cTmp = (char)((int)cArr[i] + 1);
 
-				if((int)tmp > 122) {
-					tmp = (char)97;
+				if(cTmp > 122) {
+					int a = cTmp - 122;
+					cTmp = (char)(97 + a-1);
 				}
-				k++;
-				if(skip.indexOf(tmp) > -1) {
-					idx = idx + 1;
-					continue;
+				if(skip.indexOf(cTmp) > -1) {
+					idxTmp++;
 				}
+				cArr[i] = cTmp;
 			}
-			cArr[i] = tmp;
+
 		}
 		return String.valueOf(cArr);
 	}
