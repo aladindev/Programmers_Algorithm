@@ -16,9 +16,7 @@ public class Main {
 
 class Solution {
 	public String solution(String s, String skip, int index) {
-
 		char[] cArr = s.toCharArray();
-
 		for(int i = 0 ; i < cArr.length ; i++) {
 			int idxTmp = index;
 			char cTmp = 0;
