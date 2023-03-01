@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public class Main {
@@ -9,14 +11,10 @@ public class Main {
 
 		Solution s = new Solution();
 
-		Map<Character, Integer> map = new HashMap<>();
-		map.put('c', 1);
-
-		Integer cnt = map.get('r');
-		System.out.println(cnt);
-
-		cnt = map.get('c');
-		System.out.println(cnt);
+		//["ABACD", "BCEFD"]	["ABCD","AABB"]
+		String[] a = {"ABACD", "BCEFD"};
+		String[] b = {"ABCD","AABB"};
+		s.solution(a,b);
 
 
 	}
@@ -27,25 +25,39 @@ class Solution {
 	public int[] solution(String[] keymap, String[] targets) {
 		int[] answer = new int[targets.length];
 
-		List<Map<Character, Integer>> list = new ArrayList<>();
+		Map<Character, Integer> map = new HashMap<>();
 
 		for(int i = 0 ; i < keymap.length ; i++) {
-			Map<Character, Integer> map = new HashMap<>();
-			for(int j = 0 ; j < keymap[i].length() ; j++) {
-				map.put(map.get(keymap[i].charAt(j)) != null ? '-' : keymap[i].charAt(j) , j);
+			String str = keymap[i];
+
+			for(int j = 0 ; j < str.length() ; j++) {
+				Integer mapVal = map.get(str.charAt(j));
+				if(mapVal != null) {
+					if(mapVal > j) {
+						map.put(str.charAt(j), j+1);
+					}
+				} else {
+					map.put(str.charAt(j), j+1);
+				}
 			}
-			list.add(map);
 		}
 
 		for(int i = 0 ; i < targets.length ; i++) {
-			String str = targets[i];
+			String s = targets[i];
+			char[] arr = s.toCharArray();
 
 			int cnt = 0;
-			for(int j = 0 ; j < str.length() ; j++) {
-				char c = str.charAt(j);
-				
+			for(int j = 0 ; j < arr.length ; j++) {
+				if(map.get(arr[j]) != null) {
+					cnt += map.get(arr[j]);
+				} else {
+					cnt = -1;
+					break;
+				}
 			}
+			answer[i] = cnt;
 		}
+
 		return answer;
 	}
 }
