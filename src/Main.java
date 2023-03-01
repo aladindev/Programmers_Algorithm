@@ -8,49 +8,43 @@ public class Main {
 	public static void main(String[] args) throws IOException, ParseException {
 
 		Solution s = new Solution();
-		String[] a = {"i", "drink", "water"};
-		String[] b = {"want", "to"};
-		String[] c = {"i", "want", "to", "drink", "water"};
 
-		System.out.println(s.solution(b,a,c));
+		Map<Character, Integer> map = new HashMap<>();
+		map.put('c', 1);
+
+		Integer cnt = map.get('r');
+		System.out.println(cnt);
+
+		cnt = map.get('c');
+		System.out.println(cnt);
+
+
 	}
 }
 
 
 class Solution {
-	public String solution(String[] cards1, String[] cards2, String[] goal) {
-		String answer = "Yes";
+	public int[] solution(String[] keymap, String[] targets) {
+		int[] answer = new int[targets.length];
 
-		String[] start = null;
-		String[] next = null;
-		if(goal[0].equals(cards1[0])) {
-			start = cards1.clone();
-			next = cards2.clone();
-		} else if(goal[0].equals(cards2[0])) {
-			start = cards2.clone();
-			next = cards1.clone();
-		} else {
-			return "No";
+		List<Map<Character, Integer>> list = new ArrayList<>();
+
+		for(int i = 0 ; i < keymap.length ; i++) {
+			Map<Character, Integer> map = new HashMap<>();
+			for(int j = 0 ; j < keymap[i].length() ; j++) {
+				map.put(map.get(keymap[i].charAt(j)) != null ? '-' : keymap[i].charAt(j) , j);
+			}
+			list.add(map);
 		}
 
-		int i = 1;
-		int j = 0;
-		int idx = 1;
-		while(idx < goal.length) {
-			String g = goal[idx++];
-			if(i < start.length) {
-				if(g.equals(start[i])) {
-					i++;
-					continue;
-				}
+		for(int i = 0 ; i < targets.length ; i++) {
+			String str = targets[i];
+
+			int cnt = 0;
+			for(int j = 0 ; j < str.length() ; j++) {
+				char c = str.charAt(j);
+				
 			}
-			if(j < next.length) {
-				if(g.equals(next[j])) {
-					j++;
-					continue;
-				}
-			}
-			return "No";
 		}
 		return answer;
 	}
