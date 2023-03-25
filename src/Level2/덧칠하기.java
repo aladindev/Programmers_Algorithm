@@ -60,7 +60,7 @@ class 덧칠하기 {
         int hap = 0;
         int cnt = 0;
 
-        for(int i = section.length-1 ; i>=0 ; i--) {
+        for(int i = section.length-1 ; i>=0 ; i--) { 
             if(i > 0) {
                 hap += section[i] - section[i-1];
                 if(m <= hap) {
