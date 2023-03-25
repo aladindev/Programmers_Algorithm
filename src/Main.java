@@ -1,5 +1,5 @@
 import java.io.IOException;
-import java.text.ParseException; 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -11,8 +11,8 @@ public class Main {
 
         Solution s = new Solution();
 
-        int[] g = {1, 3};
-        System.out.println(s.solution(5, 4,  g));
+        int[] g = {2, 3, 6};
+        System.out.println(s.solution(8, 4,  g));
     }
 }
 
@@ -20,14 +20,22 @@ public class Main {
 class Solution {
     public int solution(int n, int m, int[] section) {
         int answer = 0;
+        int hap = 0;
+        int cnt = 0;
 
         for(int i = section.length-1 ; i>=0 ; i--) {
-            if(i>0) {
-                int diff = section[i]-section[i-1];
-
-                if(m > diff) i--;
+            if(i > 0) {
+                hap += section[i] - section[i-1];
+                if(m <= hap) {
+                    cnt = 0;
+                    hap = 0;
+                    answer +=1;
+                } else {
+                    cnt++;
+                }
+            } else {
+                answer += 1;
             }
-            answer++;
         }
 
         return answer;
