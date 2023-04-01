@@ -12,29 +12,22 @@ public class Main {
         Solution s = new Solution();
 
         int[] g = {2, 3, 6};
-        System.out.println(s.solution(8, 4,  g));
     }
 }
 
 
 class Solution {
-    public int solution(int n, int m, int[] section) {
-        int answer = 0;
-        int hap = 0;
-        int cnt = 0;
+    public int[] solution(String[] name, int[] yearning, String[][] photo) {
+        int[] answer = new int[photo.length];
+        Map<String, Integer> map = new HashMap<>();
 
-        for(int i = section.length-1 ; i>=0 ; i--) {
-            if(i > 0) {
-                hap += section[i] - section[i-1];
-                if(m <= hap) {
-                    cnt = 0;
-                    hap = 0;
-                    answer +=1;
-                } else {
-                    cnt++;
-                }
-            } else {
-                answer += 1;
+        for(int i = 0 ; i < name.length ; i++) {
+            map.put(name[i], yearning[i]);
+        }
+
+        for(int i = 0 ; i < photo.length ; i ++) {
+            for(int j = 0 ; j < photo[i].length ; j++) {
+                answer[i] += map.get(photo[i][j]) != null ? map.get(photo[i][j]) : 0;
             }
         }
 
