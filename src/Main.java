@@ -18,25 +18,24 @@ public class Main {
 class Solution {
     public String[] solution(String[] players, String[] callings) {
 
-        List<String> list = new ArrayList<>();
-        String[] answer = new String[players.length];
+        String[] answer = players.clone();
+
+        Map<String, Integer> map = new LinkedHashMap<>();
         for(int i = 0 ; i < players.length ; i++) {
-            list.add(players[i]);
+            map.put(players[i], i);
         }
 
         for(int j = 0 ; j < callings.length ; j++) {
-            String name = callings[j];
-            int idx = list.indexOf(name)-1;
-            String tmp = list.get(idx);
-            list.remove(idx);
-            list.add(idx, name);
-            list.remove(idx+1);
-            list.add(idx+1, tmp);
+            int idx = map.get(callings[j])-1;
+            String tmp = answer[idx];
+            answer[idx] = callings[j];
+            answer[idx+1] = tmp;
+            map.put(callings[j], map.get(callings[j])-1);
+            map.put(tmp, map.get(tmp)+1);
         }
 
-        for(int k = 0 ; k < list.size() ; k++) {
-            answer[k] = list.get(k);
-        }
+
         return answer;
+
     }
 }
