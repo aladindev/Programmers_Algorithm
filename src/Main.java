@@ -1,8 +1,6 @@
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 
 public class Main {
@@ -10,27 +8,35 @@ public class Main {
     public static void main(String[] args) throws IOException, ParseException {
 
         Solution s = new Solution();
-
-        int[] g = {2, 3, 6};
+        String[] p = {"mumu", "soe", "poe", "kai", "mine"};
+        String[] c = {"kai", "kai", "mine", "mine"};
+        s.solution(p,c);
     }
 }
 
 
 class Solution {
-    public int[] solution(String[] name, int[] yearning, String[][] photo) {
-        int[] answer = new int[photo.length];
-        Map<String, Integer> map = new HashMap<>();
+    public String[] solution(String[] players, String[] callings) {
 
-        for(int i = 0 ; i < name.length ; i++) {
-            map.put(name[i], yearning[i]);
+        List<String> list = new ArrayList<>();
+        String[] answer = new String[players.length];
+        for(int i = 0 ; i < players.length ; i++) {
+            list.add(players[i]);
         }
 
-        for(int i = 0 ; i < photo.length ; i ++) {
-            for(int j = 0 ; j < photo[i].length ; j++) {
-                answer[i] += map.get(photo[i][j]) != null ? map.get(photo[i][j]) : 0;
-            }
+        for(int j = 0 ; j < callings.length ; j++) {
+            String name = callings[j];
+            int idx = list.indexOf(name)-1;
+            String tmp = list.get(idx);
+            list.remove(idx);
+            list.add(idx, name);
+            list.remove(idx+1);
+            list.add(idx+1, tmp);
         }
 
+        for(int k = 0 ; k < list.size() ; k++) {
+            answer[k] = list.get(k);
+        }
         return answer;
     }
 }
