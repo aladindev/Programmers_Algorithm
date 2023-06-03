@@ -6,7 +6,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException, ParseException {
-
+ 
         Solution s = new Solution();
         String[] p = {"mumu", "soe", "poe", "kai", "mine"};
         String[] c = {"kai", "kai", "mine", "mine"};
