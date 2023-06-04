@@ -29,7 +29,7 @@ class Solution {
             int idx = map.get(callings[j])-1;
             String tmp = answer[idx];
             answer[idx] = callings[j];
-            answer[idx+1] = tmp;
+            answer[idx+1] = tmp; 
             map.put(callings[j], map.get(callings[j])-1);
             map.put(tmp, map.get(tmp)+1);
         }
