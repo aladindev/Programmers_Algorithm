@@ -1,0 +1,14 @@
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        
+        int idx = 1;
+        for( idx = 1 ; idx<=n ; idx++) {
+        	if(n%idx == 0) {
+        		answer += idx;
+        		System.out.println(answer);
+        	}
+        }
+        return answer;
+    }
+}

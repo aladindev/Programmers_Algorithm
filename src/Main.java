@@ -8,34 +8,41 @@ public class Main {
     public static void main(String[] args) throws IOException, ParseException {
  
         Solution s = new Solution();
-        String[] p = {"mumu", "soe", "poe", "kai", "mine"};
-        String[] c = {"kai", "kai", "mine", "mine"};
-        s.solution(p,c);
+
+        int[] a = {2,6,8,14};
+        System.out.println(s.solution(a));
     }
 }
 
 
 class Solution {
-    public String[] solution(String[] players, String[] callings) {
+    public int solution(int[] arr) {
+        int answer = 0;
 
-        String[] answer = players.clone();
-
-        Map<String, Integer> map = new LinkedHashMap<>();
-        for(int i = 0 ; i < players.length ; i++) {
-            map.put(players[i], i);
+        if(arr.length == 1) {
+            answer = arr[0];
+        } else {
+            answer = calculateLCM(arr[0], arr[1]);
+            for(int i = 2 ; i < arr.length ; i++) {
+                answer = calculateLCM(answer, arr[i]);
+            }
         }
-
-        for(int j = 0 ; j < callings.length ; j++) {
-            int idx = map.get(callings[j])-1;
-            String tmp = answer[idx];
-            answer[idx] = callings[j];
-            answer[idx+1] = tmp; 
-            map.put(callings[j], map.get(callings[j])-1);
-            map.put(tmp, map.get(tmp)+1);
-        }
-
 
         return answer;
+    }
 
+    // 최대공약수 계산 메소드
+    public static int calculateGCD(int num1, int num2) {
+        if (num2 == 0) {
+            return num1;
+        }
+
+        return calculateGCD(num2, num1 % num2);
+    }
+
+    // 최소공배수 계산 메소드
+    public static int calculateLCM(int num1, int num2) {
+        int gcd = calculateGCD(num1, num2);
+        return (num1 * num2) / gcd;
     }
 }

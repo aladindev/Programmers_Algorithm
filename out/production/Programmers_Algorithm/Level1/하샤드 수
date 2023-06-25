@@ -1,0 +1,17 @@
+class Solution {
+    public boolean solution(int x) {
+        boolean answer = true;
+        
+        int hap = 0;
+        int tmp = x;
+        //각 자리수의 합 구하기 
+        while(true) {
+            hap += tmp%10;
+            tmp /= 10;
+            if(tmp == 0) break;
+        }
+        if(x % hap != 0) answer = false;
+        
+        return answer;
+    }
+}
