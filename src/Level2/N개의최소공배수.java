@@ -21,7 +21,7 @@ public class N개의최소공배수 {
         } else {
             answer = calculateLCM(arr[0], arr[1]);
             for(int i = 2 ; i < arr.length ; i++) {
-                answer = calculateLCM(answer, arr[i]);
+                answer = calculateLCM(answer, arr[i]); 
             }
         }
 
