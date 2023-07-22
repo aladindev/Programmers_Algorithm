@@ -10,8 +10,8 @@ public class Main {
 
         Solution s = new Solution();
         System.out.println((int)Math.pow(10, 1));
-        Integer[] a = {3, 30, 34, 5, 9};
-        int[] b = {0, 0, 0};
+        Integer[] a = {1, 10, 100, 1000, 818, 81, 898, 89, 0, 0};
+        int[] b = {1, 10, 100, 1000, 818, 81, 898, 89, 0, 0};
         CustomSort customSort = new CustomSort();
         Arrays.sort(a, customSort);
 
@@ -27,7 +27,7 @@ class Solution {
     public String solution(int[] numbers) {
         String answer = "";
 
-        Integer[] arr = Arrays.stream(numbers).boxed().toArray(Integer[]::new);
+        Integer[] arr = Arrays.stream(numbers).boxed().toArray(Integer[]::new); 
 
         CustomSort customSort = new CustomSort();
         Arrays.sort(arr, customSort);
@@ -58,8 +58,9 @@ class CustomSort implements Comparator<Integer> {
                     if(o1>o2) return -1;
                     else if(o2>o1) return 1;
                 }
-                return 0;
             }
+
+            if(secNumberO2>secNumberO1) return 1;
             return secNumberO1 - secNumberO2;
         }
         return firstNumberO1 - firstNumberO2;
