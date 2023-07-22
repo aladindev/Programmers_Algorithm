@@ -11,12 +11,15 @@ public class Main {
         Solution s = new Solution();
         System.out.println((int)Math.pow(10, 1));
         Integer[] a = {3, 30, 34, 5, 9};
+        int[] b = {0, 0, 0};
         CustomSort customSort = new CustomSort();
         Arrays.sort(a, customSort);
 
         for(Integer aa : a) {
             System.out.println(aa);
         }
+
+        System.out.println("--------------------\n result : " + s.solution(b).toString());
     }
 }
 
@@ -33,8 +36,7 @@ class Solution {
         for(int i = arr.length-1 ; i >=0 ; i--) {
             sb.append(arr[i]);
         }
-
-        return sb.toString();
+        return sb.toString().startsWith("0") ? "0" : sb.toString();
     }
 }
 
