@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.net.URL;
 import java.text.ParseException;
 import java.util.*;
 
@@ -10,41 +9,57 @@ public class Main {
     public static void main(String[] args) throws IOException, ParseException {
 
         Solution s = new Solution();
+        System.out.println((int)Math.pow(10, 1));
+        Integer[] a = {3, 30, 34, 5, 9};
+        CustomSort customSort = new CustomSort();
+        Arrays.sort(a, customSort);
 
-        int[] a = {2,6,8,14};
-        System.out.println(s.solution(a));
+        for(Integer aa : a) {
+            System.out.println(aa);
+        }
     }
 }
 
-
 class Solution {
-    public int solution(int[] arr) {
-        int answer = 0;
+    public String solution(int[] numbers) {
+        String answer = "";
 
-        if(arr.length == 1) {
-            answer = arr[0];
-        } else {
-            answer = calculateLCM(arr[0], arr[1]);
-            for(int i = 2 ; i < arr.length ; i++) {
-                answer = calculateLCM(answer, arr[i]);
+        Integer[] arr = Arrays.stream(numbers).boxed().toArray(Integer[]::new);
+
+        CustomSort customSort = new CustomSort();
+        Arrays.sort(arr, customSort);
+
+        StringBuilder sb = new StringBuilder(answer);
+        for(int i = arr.length-1 ; i >=0 ; i--) {
+            sb.append(arr[i]);
+        }
+
+        return sb.toString();
+    }
+}
+
+class CustomSort implements Comparator<Integer> {
+
+    @Override
+    public int compare(Integer o1, Integer o2) {
+
+        int firstNumberO1 = (int)(o1 / Math.pow(10, o1.toString().length() - 1));
+        int firstNumberO2 = (int)(o2 / Math.pow(10, o2.toString().length() - 1));
+
+        if(firstNumberO1 == firstNumberO2) {
+
+            int secNumberO1 = (int)(o1 % Math.pow(10, o1.toString().length()-1));
+            int secNumberO2 = (int)(o2 % Math.pow(10, o2.toString().length()-1));
+
+            if(secNumberO1 == secNumberO2 && secNumberO1 == 0) {
+                if(secNumberO1 == 0) {
+                    if(o1>o2) return -1;
+                    else if(o2>o1) return 1;
+                }
+                return 0;
             }
+            return secNumberO1 - secNumberO2;
         }
-
-        return answer;
-    }
-
-    // 최대공약수 계산 메소드
-    public static int calculateGCD(int num1, int num2) {
-        if (num2 == 0) {
-            return num1;
-        }
-
-        return calculateGCD(num2, num1 % num2);
-    }
-
-    // 최소공배수 계산 메소드
-    public static int calculateLCM(int num1, int num2) {
-        int gcd = calculateGCD(num1, num2);
-        return (num1 * num2) / gcd;
+        return firstNumberO1 - firstNumberO2;
     }
 }
