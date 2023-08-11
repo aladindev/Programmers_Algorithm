@@ -39,7 +39,7 @@ public class GenericStudy<T> {
  *  ex) GenericStudy<T extends Number & Interface>
  *
 * */
-/*
+
 public class GenericStudy<T extends Number> {
     private T object;
 
@@ -59,7 +59,7 @@ public class GenericStudy<T extends Number> {
         return object;
     }
 }
-*/
+
 
 /**
  *  제네릭 메소드
