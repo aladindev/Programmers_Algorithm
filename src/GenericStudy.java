@@ -34,10 +34,22 @@ public class GenericStudy<T> {
  *  >> 인스턴스 생성 시 타입 인자(Type Argument)로 Number 또는
  *  이를 상속하는 클래스만 올 수 있게 제한하는 것
  *
- * */
+ *  인터페이스를 상속할 수도 있다.
+ *  클래스와 하나의 인터페이스에 동시 제한을 걸 수 있다.
+ *  ex) GenericStudy<T extends Number & Interface>
+ *
+* */
 
 public class GenericStudy<T extends Number> {
     private T object;
+
+    public int toIntValue() {
+        /** Number 클래스를 상속하기 때문에
+         *  Number 클래스에 있는 intValue() 메소드를
+         *  호출할 수 있다!!!
+         * */
+        return object.intValue();
+    }
 
     public void set(T o) {
         object = o;
