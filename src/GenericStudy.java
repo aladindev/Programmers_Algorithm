@@ -39,15 +39,15 @@ public class GenericStudy<T> {
  *  ex) GenericStudy<T extends Number & Interface>
  *
 * */
-
+/*
 public class GenericStudy<T extends Number> {
     private T object;
 
     public int toIntValue() {
-        /** Number 클래스를 상속하기 때문에
-         *  Number 클래스에 있는 intValue() 메소드를
-         *  호출할 수 있다!!!
-         * */
+//         Number 클래스를 상속하기 때문에
+//         Number 클래스에 있는 intValue() 메소드를
+//         호출할 수 있다!!!
+
         return object.intValue();
     }
 
@@ -59,3 +59,16 @@ public class GenericStudy<T extends Number> {
         return object;
     }
 }
+*/
+
+/**
+ *  제네릭 메소드
+ *  제네릭 클래스가 아닌 클래스 내 메소드만 제네릭 타입 매개변수를 받는 메소드를 작성할 때
+ *  public static <T> Class<T> method(T obj) {}
+ *  반환형 앞에 <T> 를 붙혀서 이것이 제네릭 메소드 임을 명시한다.
+ *
+ *  다만 제네릭 타입의 결정시기에 차이가 있다.
+ *  제네릭 클래스는 인스턴스를 생성할 때 그 타입이 결정되었지만
+ *  제네릭 메소드는 메소드가 호출될 때 결정이 된다.
+ *
+ * */
