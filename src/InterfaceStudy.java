@@ -22,6 +22,18 @@ interface InterfaceStudy {
      *
      *  인스턴스 생성이 불가하므로 인스턴스 변수를 가질 수 없다.
      *  하지만 static 상수 선언은 가능하다.
+     *
+     *  ^^ 디폴트 메소드
+     *  구현을 꼭 할 필요가 없는 메소드!
+     *  하지만 인터페이스 내부 안에서 몸체를 가져야 한다!
+     *  (사용할 일 거의 없음)
+     *
+     *  **** 추상 클래스
+     *  하나 이상의 추상 메소드를 지니는 클래스 : 추상 클래스
+     *  추상 클래스는 인스턴스 생성이 불가능하다.
+     *  public abstract class Test {
+     *
+     *  }
    * */
     public String print(String doc);
 }
@@ -30,11 +42,12 @@ class Test implements InterfaceStudy {
     @Override
     public String print(String doc) {
         System.out.println("doc > " + doc);
+        return doc;
     }
 }
 
 class Test2 {
     InterfaceStudy is2 = new Test();
-    
+
 
 }
