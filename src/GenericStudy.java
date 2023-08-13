@@ -94,3 +94,29 @@ public class GenericStudy<T extends Number> {
  * 모든 자료형이 인자로 전달될 수 있다.
  *
  * */
+
+
+/**
+ *  #### 와일드 카드 #####
+ *  제네릭<T>와 혼동되어 어려움을 느낀다.
+ *
+ *  Generic<?> : 제네릭 타입 매개변수 자료형에 모든 객체가 들어올 수 있다.
+ *  public static void box(Box<?> box)(와일드카드)
+ *  ==> 와일드카드와 제네릭 메소드 기능적으로 동일
+ *      하지만 내부적으로는 동작 차이가 있다.
+ *  public static <T> Void box(Box<T> box)(제네릭 메소드)
+ * */
+
+/**
+ *  와일드 카드의 상한과 하한의 제한 : Bounded Wildcards
+ *
+ *  제네릭에서는 제한을 extends(상속)만으로 제한을 했다.
+ *  와일드카드에서는 extends(상속)과 super 키워드 두 개로 제한을 할 수 있다!!!
+ *
+ *  상한 제한된 와일드카드(Upper-Bounded Wildcards)
+ *  public static void box(Box<? extends Number> box
+ *  : Number 클래스를 상속하는 인스턴스만 제공 가능(상한 제한)
+ *  상속 관계에서 위쪽 계층을 제한하여 제한된 클래스를 상속하는 이하의 객체들을 받는다.
+ *
+ *
+ * */
