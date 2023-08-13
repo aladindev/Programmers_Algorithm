@@ -9,18 +9,44 @@ public class Main {
     public static void main(String[] args) throws IOException, ParseException {
 
         Solution s = new Solution();
-        System.out.println((int)Math.pow(10, 1));
-        Integer[] a = {1, 10, 100, 1000, 818, 81, 898, 89, 0, 0};
-        int[] b = {1, 10, 100, 1000, 818, 81, 898, 89, 0, 0};
-        CustomSort customSort = new CustomSort();
-        Arrays.sort(a, customSort);
 
-        for(Integer aa : a) {
-            System.out.println(aa);
-        }
+        Toy t = new Toy();
+        Box<Toy> box = new Box<Toy>();
+        box.set(t);
 
-        System.out.println("--------------------\n result : " + s.solution(b).toString());
+        TMan tman = new TMan();
+        
+
+        System.out.println(box.get() instanceof Toy);
+        System.out.println(t);
     }
+}
+
+class Box<T> {
+    private T ob;
+    public void set(T o) {
+        ob = o;
+    }
+    public T get() {
+        return ob;
+    }
+}
+
+class Toy {
+    public String toString() {
+        return "test";
+    }
+}
+
+class Man {
+    private String name;
+    public void tellYourName() {
+
+    }
+}
+
+class TMan extends Man {
+    String nam;
 }
 
 class Solution {

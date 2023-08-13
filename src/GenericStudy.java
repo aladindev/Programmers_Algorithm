@@ -119,4 +119,30 @@ public class GenericStudy<T extends Number> {
  *  상속 관계에서 위쪽 계층을 제한하여 제한된 클래스를 상속하는 이하의 객체들을 받는다.
  *
  *
+ *  하한 제한된 와일드카드(Lower-Bounded Wildcards)
+ *  public static void box(Box<? super Integer> box)
+ *
+ *  box는 Box<T> 인스턴스의 참조 값을 전달받는 매개변수이다.
+ *  단 전달되는 인스턴스의 T는 Integer 또는 Integer가 상속하는 클래스이어야 함
+ *  즉 위 메소드의 인자로 전달 가능한 인스턴스는 Box<Integer>, Box<Number>, Box<Object>로 제한됨
+ *  즉 위 코드에서는 최하 Integer 객체이거나 그 이상의 객체만 와일드카드 자리에 올 수 있다.
+ *
+ *
+ *  ## 상한 제한의 목적 : 제한을 둠으로써 개발자의 실수 컴파일러 단계에서 잡겠다.
+ *
+ *  public static outBox(Box<? extends Toy> box)
+ *
+ *  class BoxContentsMover {
+ *      //from에 저장된 내용물을 to로 이동
+ *      public static void moveBox(Box<? super Toy> to,
+ *                                  Box<? extends Toy> from) {
+ *          to.set(from.get());
+ *
+ *      }
+ *
+ *  }
+ *
+ *  컴파일 과정에서 <> 제네릭 꺽쇠? 부분이 전부 지워진다.
+ *  따라서 오버로딩 시 <? extends ""> <? super "">
+ *  등 전부 같은 타입으로 구분된다.(컴파일 시에)
  * */
