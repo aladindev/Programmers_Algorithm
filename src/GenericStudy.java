@@ -72,3 +72,25 @@ public class GenericStudy<T extends Number> {
  *  제네릭 메소드는 메소드가 호출될 때 결정이 된다.
  *
  * */
+
+
+
+/**
+ *  제네릭 메소드 vs 일반 메소드 *
+ *  Generic<Integer> Generic<Object>
+ *
+ *  public void test(Generic<Object> obj)
+ *  라는 메소드가 있을 때 Integer가 Object를 상속하지만
+ *  제네릭 타입인자는 상속과 상관관계는 전혀 고려하지 않는다.
+ *  따라서 Integer 타입자료형은 매개변수로 전달 불가능
+ *
+ * 위와 같은 일반 메소드는 이미 제네릭 자료형이 결정되었기 때문에
+ * 아무런 상속이나 상관관계랑은 상관없이 결정된 타입인자만
+ * 받을 수 있다.
+ *
+ * 하지만 제네릭 메소드
+ * public <T> void test(Generic<T> obj)
+ * 는 제네릭 메소드의 생성과 동시에 자료형이 결정되므로
+ * 모든 자료형이 인자로 전달될 수 있다.
+ *
+ * */
