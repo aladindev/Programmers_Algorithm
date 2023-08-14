@@ -38,6 +38,14 @@ public class GenericStudy<T> {
  *  클래스와 하나의 인터페이스에 동시 제한을 걸 수 있다.
  *  ex) GenericStudy<T extends Number & Interface>
  *
+ *
+ *
+ *  자바 가상머신의 메모리 모델
+ *
+ *  * 메소드 영역(Method Area) : 메소드의 바이트코드, static 변수
+ *  * 스택 영역(Stack Area)    : 지역변수, 매개변수
+ *  * 힙 영역(Heap Area)      : 인스턴스
+ *
 * */
 
 public class GenericStudy<T extends Number> {
