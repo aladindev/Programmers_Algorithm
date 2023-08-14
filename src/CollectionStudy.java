@@ -67,7 +67,7 @@
  *  기반은 LinkedList<E> 혹은 ArrayList<E>
  *  각 성질은 연결이냐 배열이냐 특성을 그대로 반영함
  *
- * 
+ *
  *
  *  Map : Iterable 반복자 인터페이스를 구현하지 않는다.
  *  map은 반복자를 얻을 수 없다.
@@ -75,4 +75,23 @@
  *  Map
  *  HashMap
  *  TreeMap(오름차순정렬) : 트리구조
+ *
+ *
+ *  제네릭 심화!!!
+ *  public static <T extends Comparable<T>> void sort(List<T> list)
+ *  반환형이 void인 제네릭 메소드 메소드 호출 시 T(Type) 결정된다.
+ *  위에서 Comparable<T> 인터페이스를 구현하는 인스턴스 혹은 그 하위의 인스턴스만 인자로 올 수 있다.
+ *  즉, Comparable 인터페이스를 구현하고 있어야 한다.(상한 제한)
+ *  Map은 Comparable 인터페이스를 구현하고 있지 않으므로 인자로 올 수 없다.
+ *  만약 List<String> list = new ArrayList<>() 를 인자로 전달한다면
+ *
+ *  public static <List<T> extends Comparable<String>> void sort(List<String> list)
+ *  로 해석할 수 있다.
+ *  제네릭 메소드는 호출 시 타입이 결정되는데, Comparable<String>인터페이스를 extends(구현 혹은 상속)하고 있는
+ *  List<String>로 타입을 상한제한하겠다. 즉, List<String> implements Comparable<String> 혹은
+ *  그 하위의 인스턴스만 인자로 받을 수 있다.
+ *  String class 원장은
+ *  class String extends Object implements Comparable<String> 이다.
+ *  즉 Comparable<String>을 구현하고 있으므로 위 제네릭 메소드의 인자로 적합하다.
+ *
 **/
