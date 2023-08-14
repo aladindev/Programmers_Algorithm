@@ -46,5 +46,27 @@
  *  java.util.Objects 라이브러리에 정의된
  *  public static int hash(Object ...values)를 사용하면 된다.
  *  매개변수로는 클래스 내 멤버변수 전부를 전달하는 것이 좋다.
- *  
- * */
+ *
+ *
+ *  Set
+ *  HashSet : Hashcode 기준
+ *  TreeSet : Tress 구조
+ *  TreeSet도 저장순서를 보장하지 않고 중복을 허용하지 않는
+ *  기본적인 Set의 성격을 갖지만 default 오름차순 정렬을 진행한다!!
+ *
+ *  저장할 때 저장하는 값의 크기를 비교해서 위치에 맞게 저장시킨다.(트리구조)
+ *  작은 값 왼쪽 / 큰 값 왼쪽
+ *
+ *  Queue<E> : FIRST IN FIRST OUT(FIFO)
+ *  Stack<E> : LAST IN FIRST OUT (LIFO)
+ *  자바에 Stack<E> 클래스도 있지만 사용하면 안됨!!
+ *  (성능이슈로 사용 지양 권고)
+ *
+ *  대신 Deque(덱) 컬렉션 프레임워크 사용!!
+ *  Deque<E> deq = new ArrayDeque<>()
+ *  기반은 LinkedList<E> 혹은 ArrayList<E>
+ *  각 성질은 연결이냐 배열이냐 특성을 그대로 반영함
+ *
+ *
+ *
+**/
