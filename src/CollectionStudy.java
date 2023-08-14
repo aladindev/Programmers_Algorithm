@@ -94,4 +94,25 @@
  *  class String extends Object implements Comparable<String> 이다.
  *  즉 Comparable<String>을 구현하고 있으므로 위 제네릭 메소드의 인자로 적합하다.
  *
+ *  ex
+ *  class Car implements Comparable<Car>
+ *  class ECar extends Car
+ *  이 상황에서 ECar는 Car를 상속하기 때문에 ECar는 Comparable<Car>를 간접 구현하고 있다.
+ *  public static <T extends Comparable<T>> void sort(List<T> list)
+ *  그럼 sort 메소드의 인자로 전달될 수 있을까?
+ *  제네릭을 결정하자면
+ *  public static <ECar extends Comparable<ECar>> void sort(List<ECar> list)
+ *  이렇게 되는데, ECar는 Comparable<Car>를 간접 구현할 뿐 Comparable<ECar>를 구현하고 있지 않다.
+ *  따라서 호출이 불가능하다!!!!!
+ *  public static <T extends Comparable<? super T>> void sort(List<T> list)
+ *  public static <T extends Comparable<? super T>> void sort(List<T> list)
+ *
+ *  public static <ECar extends Comparable<? super ECar>> void sort(List<ECar> list)
+ *  Comparable<? super ECar> : 와일드카드로 인해 어떠한 인스턴스도 올 수 있지만 super(하한 제한) 키워드로 인해
+ *  ECar이거나 ECar가 상속하는 상위 클래스만 올 수 있다
+ *  즉 ECar이거나 ECar가 상속하는 상위 Car 클래스가 올 수 있다.
+ *  따라서 ? super ECar를 붙혀줌으로써 ECar 혹은 Car가 올 수 있다!!!
+ *  사실 Comparable<ECar>가 존재하지 않기 때문에 위의 하한제한을 걸지 않으면
+ *  올 수 없지만, 하한 제한을 걸어줌으로써 ECar or Car가 올 수 있기 때문에 걸어주는 것!!!
+ *
 **/
