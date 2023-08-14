@@ -67,6 +67,12 @@
  *  기반은 LinkedList<E> 혹은 ArrayList<E>
  *  각 성질은 연결이냐 배열이냐 특성을 그대로 반영함
  *
+ * 
  *
+ *  Map : Iterable 반복자 인터페이스를 구현하지 않는다.
+ *  map은 반복자를 얻을 수 없다.
  *
+ *  Map
+ *  HashMap
+ *  TreeMap(오름차순정렬) : 트리구조
 **/
