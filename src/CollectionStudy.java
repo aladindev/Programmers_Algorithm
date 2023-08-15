@@ -126,4 +126,8 @@
  *
  *  public static <T> int binarySearch(List<? extends Comparable<? super T>> list, T key)
  *
+ *  Collection Framework
+ *  public static <T> int binarySearch(List<? extends Comparable<? super T>> list, T key)
+ *  binarySearch 메소드 사용 시 먼저 정렬을 우선 진행해야한다!!!!!!
+ *  index 탐색하는 알고리즘!!
 **/
