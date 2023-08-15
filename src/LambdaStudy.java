@@ -30,4 +30,7 @@
  *  Printable prn = (s) -> { System.out.println(s); };
  *  뒤의 람다식 자체를 변수라고 가정하면
  *  method((s) -> System.out.println(s)); 이 식도 가능
+ *
+ *  람다와 함수형 인터페이스(Lambda Functional Interface)
+ *  구현해야 할 추상 메소드가 1개인 인터페이스 = 함수형 인터페이스
  * */
