@@ -26,4 +26,8 @@
  *  Printable 인터페이스는 String 타입의 매개변수를 1개 받는구나
  *  Printable 인터페이스는 구현해야 할 추상메소드가 1개만 존재하는구나.
  *
+ *  '람다식'의 인자 전달
+ *  Printable prn = (s) -> { System.out.println(s); };
+ *  뒤의 람다식 자체를 변수라고 가정하면
+ *  method((s) -> System.out.println(s)); 이 식도 가능
  * */
