@@ -119,4 +119,11 @@
  *  없으니까. 하지만 ? super T(하한제한)를 걸어줌을써 Type은 ECar이거나 ECar가 상속하는
  *  상위 클래스가 올 수 있다.
  *  따라서 Comparable<Car>도 올 수 있게 되는 것!!!!!!!!!!
+ *
+ *  public static <T extends Comparable<? super T>>
+ *
+ *  public static <T extends Comparable<? super T>>
+ *
+ *  public static <T> int binarySearch(List<? extends Comparable<? super T>> list, T key)
+ *
 **/
