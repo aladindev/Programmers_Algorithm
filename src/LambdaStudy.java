@@ -33,4 +33,24 @@
  *
  *  람다와 함수형 인터페이스(Lambda Functional Interface)
  *  구현해야 할 추상 메소드가 1개인 인터페이스 = 함수형 인터페이스
+ *
+ *  인스턴스보다 기능 하나가 필요한 상황을 위한 Lambda
+ *  (기능 하나-> 메소드 하나)
+ *
+ *  Collection.sort(Collection c, (o1, o2) -> { return o1 - o2;};
+ *  Collection.sort(Collection c, (o1, o2) -> return o1 - o2);
+ *
+ *
+ *  함수형 인터페이스(Functional Interfaces)와 어노테이션
+ *
+ *  함수형 인터페이스 : 추상 메소드가 딱 하나(구현해야 할 메소드가 딱 하나)만 존재하는 인터페이스
+ *  @FunctionalInterface : 함수형 인터페이스의 조건을 갖추었는지에 대한 검사를 컴파일러에게 요청!!
+ *  @FunctionalInterface
+ *  interface Test { >> 추상 메소드가 하나이므로 함수형 인터페이스 조건에 부합 
+ *      int c(int a, int b) >> 추상메소드이므로 구현해야함
+ *      default method() {..} >> default 메소드 구현 필요없음
+ *      static int staticMethod() {...} >> static 메소드 구현 필요 없음
+ *  }
+ *
+ *
  * */
