@@ -42,6 +42,10 @@ class MethodReferencesStudy {
       JustSort js = new JustSort();
       Consumer<List<Integer>> c2 = js::sort;
 
+      js = null;
+      // 프로그램 종료 직전일지라도 effectively final 로 선언된 인스턴스가 바뀌면
+      // 에러다.
+
 
    }
 }
