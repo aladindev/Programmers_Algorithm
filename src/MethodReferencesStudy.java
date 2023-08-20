@@ -1,3 +1,4 @@
+import java.awt.print.Printable;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
@@ -14,6 +15,7 @@ import java.util.function.Consumer;
  *      메소드 참조식으로 작성할 수 있다.
  *      Consumer<List<Integer>> c = list -> Collections.reverse(list);
  *      >> Consumer<List<Integer>> c = Collections::reverse;
+ *      약속에 근거!
  *
  *  - 참조변수를 통한 인스턴스 메소드 참조
  *
@@ -22,7 +24,24 @@ import java.util.function.Consumer;
  *  - 생성자 참조
  * */
 
+class JustSort {
+   public void sort(List<?> list) { // 인스턴스 메소드
+      Collections.reverse(list);
+   }
+}
 class MethodReferencesStudy {
    private void test() {
+
+      // 스태틱 메소드 참조
+      Consumer<List<Integer>> c = Collections::sort;
+
+      // 인스턴스 메소드 참조
+      // 단 js는 반드시 effectively final : 사실상 상수
+      // 한번 참조한 인스턴스가 바뀌지 않는 경우를 effectively final 이라한다.
+      // 프로그램 종료시까지 한 번 참조한 인스턴스가 바뀌지 않는 경우
+      JustSort js = new JustSort();
+      Consumer<List<Integer>> c2 = js::sort;
+
+
    }
 }
