@@ -1,7 +1,10 @@
 import java.awt.print.Printable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  *  Method References 4가지 유형과 Method References의 장점
@@ -22,6 +25,7 @@ import java.util.function.Consumer;
  *  - 클래스 이름을 통한 인스턴스 메소드 참조
  *
  *  - 생성자 참조
+ *
  * */
 
 class JustSort {
@@ -47,5 +51,11 @@ class MethodReferencesStudy {
       // 에러다.
 
 
+      // 생성자 참조
+      /* 람다식을 사용 시 인스턴스 생성 후 이의 참조 값을 반환하는 경우가 있다.
+      * 이 경우 메소드 참조 방식을 쓸 수 있음 */
+      Function<char[], String> f = String::new;
+      Function<String, String> f2 = String::new;
+      Function<BigDecimal, String> f3 = b -> String.valueOf(b);
    }
 }
