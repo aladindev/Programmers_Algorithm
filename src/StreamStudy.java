@@ -53,4 +53,13 @@
  *      list.paralleStream()
  *          .reduce("", list)
  *
+ *
+ *
+ *    flatMap = 1:*(일대다) 매핑하는 메소드
+ *    Stream<String> ss = Stream.of("1", "2")
+ *    스트림 생성
+ *
+ *    // 아래 람다식에서 스트림을 생성
+ *    String<String> ss2 = ss.flatMap(s -> Arrays.stream(s.split("_")));
+ *    ss2.forEach(s -> System.out.print(s + "\t"));
  * */
