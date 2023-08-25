@@ -1,7 +1,8 @@
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.*;
-
+import java.util.stream.Stream;
 
 
 public class Main {
@@ -19,6 +20,17 @@ public class Main {
 
         System.out.println(box.get() instanceof Toy);
         System.out.println(t);
+
+
+        List<TestDto> list = Arrays.asList(new TestDto(BigDecimal.valueOf(100000000))
+                                         ,new TestDto(BigDecimal.valueOf(200000000))
+                                        ,new TestDto(BigDecimal.valueOf(300000000))
+        );
+
+        Stream<List<TestDto>> streams = Stream.of(list);
+
+
+
     }
 }
 
@@ -90,5 +102,18 @@ class CustomSort implements Comparator<Integer> {
             return secNumberO1 - secNumberO2;
         }
         return firstNumberO1 - firstNumberO2;
+    }
+}
+
+class TestDto {
+    private BigDecimal b;
+    private String key;
+
+    public TestDto(BigDecimal b) {
+        this.b = b;
+    }
+
+    public BigDecimal getB() {
+        return b;
     }
 }

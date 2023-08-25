@@ -78,31 +78,18 @@ import java.util.stream.Stream;
  *    peek : 중간연산
  *    최종연산이 수행되기 전까지 중간연산은 아무런 의미가 없다.
  *
+ *    collect() : 스트림에 있는 데이터를 모으는 것
+ *    String[] words = {"122", "233", "344444"}
+ *    Stream<String> ss = Arrays.stream(words)
+ *
+ *    List<String> ls = ss.filter(s -> s.length() < 4)
+ *                        .collect(() -> new ArrayList<>() // 저장소 생성
+ *                         ,(c, s) -> c.add(s) // 첫 번째 인자 통해 생성된 인스턴스 c, 스트림의 데이터 s
+ *                         ,(lst1, lst2) -> lst1.addAll(lst2) // < 병렬 스트림에서 사용
+ *                         >> parallel().filter().collect(, , (lst1, lst2) -> lst1.addAll(lst2));
+ *                         >> 병렬처리로 각각 생성된 리스트를 취합한다.
  * */
 class StreamStudy {
-    public static void main(String[] args) {
-
-        TestStream[] streams = {
-                new TestStream(1, 2, 3)
-               ,new TestStream(4, 5, 6)
-               ,new TestStream(7, 8, 9)
-        };
-
-        //TestStreams 인스턴스로 이뤄진 스트림 생성
-        Stream<TestStream> sr = Arrays.stream(streams);
-
-        // flatMap을 통한 일대다 스트림 생성
-        // 일 : 하나의 TestStream 인스턴스
-        // 다 : 하나의 TestStream 인스턴스 내 3개의 멤버변수
-        // >> int형 1,2,3 / 4,5,6 / 7,8,9 스트림 생성
-        IntStream si = sr.flatMapToInt(
-                r -> IntStream.of(r.getA(), r.getB(), r.getC())
-        );
-        si.forEach(s -> System.out.println(s));
-
-        Stream<String> strStream = Stream.of("1", "2", "3");
-        strStream.sorted().forEach(s -> System.out.println(s));
-    }
 }
 class TestStream {
     private int a;
@@ -118,3 +105,4 @@ class TestStream {
     public int getB() {return b;}
     public int getC() {return c;}
 }
+
