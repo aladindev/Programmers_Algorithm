@@ -103,7 +103,23 @@ import java.util.stream.Stream;
  *      > I/O 스트림으로 해결해야 할 부분
  *    컬렉션 인스턴스에 저장된 문자열 중 길이가 5 이상인 문자열만 출력
  *      > 스트림으로 해결해야 할 논리적인 내용
- * */
+ *
+ *
+ *    스트림은 기본적으로 한 방향으로 흐르는 것..
+ *    Input Stream / Output Stream 각각 구현해야 함.
+ *
+ *    입력 스트림 / 출력 스트림을 각각 구현해야 한다.
+ *
+ *    try-with-resource
+ *
+ *    try(OutputStream out = new FileOutputStream("")) {
+ *        // try-with-resource
+ *        -- 스트림 open이 정상적으로 되었으면 close도 알아서
+ *           컴파일러가 진행해줌.
+ *    } catch(IOException e) {
+ * 
+ *    }
+ **/
 class StreamStudy {
 }
 class TestStream {
