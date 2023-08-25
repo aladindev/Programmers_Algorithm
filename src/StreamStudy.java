@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 /***
  *  컬렉션 중 전체 혹은 일부중에서 특정 조건? 필터를 줘서
  *  꺼내는 작업
@@ -56,10 +60,61 @@
  *
  *
  *    flatMap = 1:*(일대다) 매핑하는 메소드
- *    Stream<String> ss = Stream.of("1", "2")
+ *    Stream<String> ss = Stream.of("1_2", "2_3")
  *    스트림 생성
  *
  *    // 아래 람다식에서 스트림을 생성
- *    String<String> ss2 = ss.flatMap(s -> Arrays.stream(s.split("_")));
+ *    Stream<String> ss2 = ss.flatMap(s -> Arrays.stream(s.split("_")));
  *    ss2.forEach(s -> System.out.print(s + "\t"));
+ *    반환형은 Stream형을 반환하며, 수행 후 다수의 데이터가 생성이 된다.
+ *    ex) split을 통해
+ *    Stream a =>> {"1", "2"} / Stream b = {"2", "3"}
+ *    두 개의 스트림이 생성이 되고, 두 개의 스트림을 연결한다.
+ *    따라서 2개의 스트림이 생성이 된다. 1:* 일대다 관계
+ *
+ *
+ *    루핑(Looping)
+ *    forEach : 최종연산
+ *    peek : 중간연산
+ *    최종연산이 수행되기 전까지 중간연산은 아무런 의미가 없다.
+ *
  * */
+class StreamStudy {
+    public static void main(String[] args) {
+
+        TestStream[] streams = {
+                new TestStream(1, 2, 3)
+               ,new TestStream(4, 5, 6)
+               ,new TestStream(7, 8, 9)
+        };
+
+        //TestStreams 인스턴스로 이뤄진 스트림 생성
+        Stream<TestStream> sr = Arrays.stream(streams);
+
+        // flatMap을 통한 일대다 스트림 생성
+        // 일 : 하나의 TestStream 인스턴스
+        // 다 : 하나의 TestStream 인스턴스 내 3개의 멤버변수
+        // >> int형 1,2,3 / 4,5,6 / 7,8,9 스트림 생성
+        IntStream si = sr.flatMapToInt(
+                r -> IntStream.of(r.getA(), r.getB(), r.getC())
+        );
+        si.forEach(s -> System.out.println(s));
+
+        Stream<String> strStream = Stream.of("1", "2", "3");
+        strStream.sorted().forEach(s -> System.out.println(s));
+    }
+}
+class TestStream {
+    private int a;
+    private int b;
+    private int c;
+
+    public TestStream(int a, int b, int c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+    public int getA() {return a;}
+    public int getB() {return b;}
+    public int getC() {return c;}
+}
