@@ -119,6 +119,8 @@ import java.util.stream.Stream;
  *    } catch(IOException e) {
  * 
  *    }
+ *
+ *    try-with-resource 조건 복수개 가능 
  **/
 class StreamStudy {
 }
