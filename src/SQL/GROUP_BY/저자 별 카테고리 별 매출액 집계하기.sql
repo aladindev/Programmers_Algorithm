@@ -8,7 +8,7 @@
 --CATEGORY	VARCHAR(N)	FALSE	카테고리 (경제, 인문, 소설, 생활, 기술)
 --AUTHOR_ID	INTEGER	FALSE	저자 ID
 --PRICE	INTEGER	FALSE	판매가 (원)
---PUBLISHED_DATE	DATE	FALSE	출판일
+--PUBLISHED_DATE	DATE	FALSE	 출판일
 --AUTHOR 테이블은 도서의 저자의 정보를 담은 테이블로 아래와 같은 구조로 되어있습니다.
 --
 --Column name	Type	Nullable	Description
