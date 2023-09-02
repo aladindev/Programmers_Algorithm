@@ -53,4 +53,25 @@
  *   : 풀 안에 인자로 전달된 수의 쓰레드를 생성하고 유지한다.
  *  newCachedThreadPool
  *   : 풀 안의 쓰레드의 수를 작업의 수에 맞게 유동적으로 관리한다.
+ *
+ *   Callable & Future
+ *
+ *
+ * @FunctionalInterface
+ * public interface Callable<V> {
+ *     V call() throws Exception;
+ * } // 스레드의의 task 반환형이 존재한다!!!
+ *
+ * ex) Callable<Integer> task = () -> { .. return Integer.One; };
+ *     Future<Integer> fur = exr.submit(task);
+ *
+ *     Integer result = fur.get(); // 스레드의 반환 값 획득
+ *
+ *  synchronized를 대신하는 ReentrantLock
+ *  ReentrantLock obj = new ReentrantLock();
+ *
+ *  method() {
+ *      obj.lock();
+ *      obj.unlock();
+ *  }
  * */
