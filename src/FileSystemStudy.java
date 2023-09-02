@@ -6,4 +6,7 @@
  *  path.getRoot()
  *  path.getParent()
  *  path.getFileName()
+ *
+ *  Path path = Paths.get("") // 현재 디렉토리 정보 '상대 경로' 형태로 담긴 인스턴스 생성
+ *  boolean path.isAbsolute()
  * */
