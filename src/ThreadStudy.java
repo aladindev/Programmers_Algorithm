@@ -74,4 +74,9 @@
  *      obj.lock();
  *      obj.unlock();
  *  }
+ *
+ *  컬렉션 인스턴스 동기화
+ *  public static <T> Set<T> synchronizedSet(Set<T> s)
+ *  컬렉션 인스턴스의 Iterator 반복자도 동기화를 해줘야 정상적인 결과를 얻을 수 있다.
+ *
  * */
