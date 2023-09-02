@@ -26,6 +26,8 @@
  *  코어 할당으로 인해서 제대로 된 결과를 만들어 낼 수 없다.
  *  해결책 : 스레드의 동기화 !!(스레드가 작업중일때 코어 할당을 막는다.)
  *
+ *  같은 메모리에 접근하는 두 개 이상의 쓰레드(멀티쓰레드) 환경에서는
+ *  반드시 동기화를 진행해야 한다.
  *  동기화 방법
  *  1. 동기화 메소드(synchronized)
  *  synchronized method()
@@ -34,4 +36,16 @@
  *  method() {
  *      synchronized(this)
  *  }
+ *
+ *  근데 작업이 큰 메소드 전체에 동기화를 하면 비효율적이다.
+ *  그래서 동기화 블럭을 사용하는 것이 좋다.
+ *
+ *  Thread pool
+ *  쓰레드의 생성과 소멸은 리소스 소모가 많은 작업이다.
+ *  그런데 쓰레드 풀은 쓰레드의 재활용을 위한 모델이다.
+ *
+ *  ExecutorService exr = Executors.newSinglneThreadExecutor();
+ *  exr.submit(task); exr.submit(task2) exr.submit(task3) exr.submit(task4)
+ *
+ *  n
  * */
