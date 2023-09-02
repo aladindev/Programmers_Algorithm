@@ -47,5 +47,10 @@
  *  ExecutorService exr = Executors.newSinglneThreadExecutor();
  *  exr.submit(task); exr.submit(task2) exr.submit(task3) exr.submit(task4)
  *
- *  n
+ *  newSingleThreadExecutor
+ *   : 풀 안에 하나의 쓰레드만 생성하고 유지한다.
+ *  newFixedThreadPool
+ *   : 풀 안에 인자로 전달된 수의 쓰레드를 생성하고 유지한다.
+ *  newCachedThreadPool
+ *   : 풀 안의 쓰레드의 수를 작업의 수에 맞게 유동적으로 관리한다.
  * */
