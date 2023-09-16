@@ -1,5 +1,5 @@
 /***
- *  쓰레드 그리고 동기화
+ *  쓰레드 그리고 동기화(1)
  *
  *  스레드의 이해
  *  Process : 실행중인 프로그램
@@ -57,7 +57,7 @@
  *   Callable & Future
  *
  *
- * @FunctionalInterface 
+ * @FunctionalInterface
  * public interface Callable<V> {
  *     V call() throws Exception;
  * } // 스레드의의 task 반환형이 존재한다!!!
