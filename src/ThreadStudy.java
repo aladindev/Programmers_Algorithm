@@ -57,7 +57,7 @@
  *   Callable & Future
  *
  *
- * @FunctionalInterface
+ * @FunctionalInterface 
  * public interface Callable<V> {
  *     V call() throws Exception;
  * } // 스레드의의 task 반환형이 존재한다!!!
