@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 
+
 public class Main {
 
     public static void main(String[] args) throws IOException, ParseException {
@@ -34,6 +35,30 @@ public class Main {
     }
 }
 
+class Solution {
+    public int solution(int[] citations) {
+        int answer = 0;
+        Set<Integer> set = new HashSet<>();
+
+        for(int i = 0 ; i < citations.length ; i++) {
+            int a = citations[i];
+            int cnt = 0;
+            for(int j = 0 ; j < citations.length ; j++) {
+                if(citations[j] >= a) {
+                    cnt += 1;
+                }
+            }
+            if(cnt >= a) {
+                set.add(a);
+            }
+        }
+
+        return Collections.max(set);
+    }
+}
+
+
+
 class Box<T> {
     private T ob;
     public void set(T o) {
@@ -61,22 +86,6 @@ class TMan extends Man {
     String nam;
 }
 
-class Solution {
-    public String solution(int[] numbers) {
-        String answer = "";
-
-        Integer[] arr = Arrays.stream(numbers).boxed().toArray(Integer[]::new); 
-
-        CustomSort customSort = new CustomSort();
-        Arrays.sort(arr, customSort);
-
-        StringBuilder sb = new StringBuilder(answer);
-        for(int i = arr.length-1 ; i >=0 ; i--) {
-            sb.append(arr[i]);
-        }
-        return sb.toString().startsWith("0") ? "0" : sb.toString();
-    }
-}
 
 class CustomSort implements Comparator<Integer> {
 
