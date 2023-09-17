@@ -18,7 +18,7 @@ public class Main {
 
         TMan tman = new TMan();
 
-        s.solution(new int[] {70, 50, 80, 50}, 100);
+        s.solution(new int[] {70, 80, 50}, 100);
 
     }
 }
@@ -32,11 +32,14 @@ class Solution {
         int sum = 0;
         int endIdx = arr.length-1;
         int strIdx = 0;
-        while(strIdx != endIdx) {
-            if(arr[strIdx++] + arr[endIdx--] > limit) {
-                answer += 2;
+        while(strIdx <= endIdx) {
+            if(arr[strIdx] + arr[endIdx] > limit) {
+                answer += 1;
+                endIdx--;
             } else {
                 answer += 1;
+                strIdx++;
+                endIdx--;
             }
         }
 
