@@ -32,7 +32,7 @@ import java.util.*;
 class 구명보트 {
     /**
      *  가장 가벼운 사람 + 가장 무거운 사람 > 한도이면
-     *  가장 무거운 사람을 혼자 태워 보내는 방식으로 ,,,,
+     *  가장 무거운 사람을 혼자 태워 보내는 방식으로 ,,,, 
      * */
     public int solution(int[] people, int limit) {
         int answer = 0;
