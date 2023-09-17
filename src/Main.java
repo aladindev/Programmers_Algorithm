@@ -17,43 +17,30 @@ public class Main {
         box.set(t);
 
         TMan tman = new TMan();
-        
 
-        System.out.println(box.get() instanceof Toy);
-        System.out.println(t);
-
-
-        List<TestDto> list = Arrays.asList(new TestDto(BigDecimal.valueOf(100000000))
-                                         ,new TestDto(BigDecimal.valueOf(200000000))
-                                        ,new TestDto(BigDecimal.valueOf(300000000))
-        );
-
-        Stream<List<TestDto>> streams = Stream.of(list);
-
-
+        s.solution(new int[] {70, 50, 80, 50}, 100);
 
     }
 }
 
 class Solution {
-    public int solution(int[] citations) {
+    public int solution(int[] people, int limit) {
         int answer = 0;
-        Set<Integer> set = new HashSet<>();
+        Integer[] arr = Arrays.stream(people).boxed().toArray(Integer[]::new);
+        Arrays.sort(arr);
 
-        for(int i = 0 ; i < citations.length ; i++) {
-            int a = citations[i];
-            int cnt = 0;
-            for(int j = 0 ; j < citations.length ; j++) {
-                if(citations[j] >= a) {
-                    cnt += 1;
-                }
-            }
-            if(cnt >= a) {
-                set.add(a);
+        int sum = 0;
+        int endIdx = arr.length-1;
+        int strIdx = 0;
+        while(strIdx != endIdx) {
+            if(arr[strIdx++] + arr[endIdx--] > limit) {
+                answer += 2;
+            } else {
+                answer += 1;
             }
         }
 
-        return Collections.max(set);
+        return answer;
     }
 }
 
