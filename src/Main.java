@@ -18,35 +18,41 @@ public class Main {
 
         TMan tman = new TMan();
 
-        s.solution(new int[] {70, 80, 50}, 100);
+        s.solution(2, new int[] {1, 1, 1, 1, 2, 2, 2, 3});
+
 
     }
 }
 
 class Solution {
-    public int solution(int[] people, int limit) {
+    public int solution(int k, int[] tangerine) {
         int answer = 0;
-        Integer[] arr = Arrays.stream(people).boxed().toArray(Integer[]::new);
-        Arrays.sort(arr);
+        int[] copy = new int[10000000];
 
-        int sum = 0;
-        int endIdx = arr.length-1;
-        int strIdx = 0;
-        while(strIdx <= endIdx) {
-            if(arr[strIdx] + arr[endIdx] > limit) {
-                answer += 1;
-                endIdx--;
-            } else {
-                answer += 1;
-                strIdx++;
-                endIdx--;
-            }
+        for(int i : tangerine) {
+            copy[i] += 1;
         }
 
+        Integer[] copyB = Arrays.stream(copy).boxed().toArray(Integer[]::new);
+        Arrays.sort(copyB, (o1, o2) -> {return o2 - o1;});
+
+        int cnt = 0;
+        int lop = 0;
+        while(cnt < k) {
+            int ele = copyB[lop++];
+            if(cnt+ele > k) {
+                answer++;
+                break;
+            } else {
+                cnt += ele;
+                if(ele != 0) {
+                    answer++;
+                }
+            }
+        }
         return answer;
     }
 }
-
 
 
 class Box<T> {
