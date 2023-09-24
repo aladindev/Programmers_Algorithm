@@ -18,31 +18,23 @@ public class Main {
 
         TMan tman = new TMan();
 
-        s.solution(4, 2, 3);
 
     }
 }
 
 class Solution {
-    public int solution(int n, int a, int b) {
-        int answer = 0;
+    public int solution(int n) {
+        int ans = 1;
 
-        while(true) {
-            a = nextLevel(a);
-            b = nextLevel(b);
-
-            answer++;
-            if(a==b) break;
+        while(n/2 != 0) {
+            int a = n/2;
+            int b = n%2;
+            n = n/2;
+            if(b > 0) {
+                ans+=1;
+            }
         }
-
-
-        return answer;
-    }
-    public int nextLevel(int n) {
-        if(n%2 != 0) {
-            return n/2+1;
-        }
-        return n/2;
+        return ans;
     }
 }
 
