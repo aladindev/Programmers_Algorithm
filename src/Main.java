@@ -19,8 +19,6 @@ public class Main {
         TMan tman = new TMan();
 
         s.solution(2, new int[] {1, 1, 1, 1, 2, 2, 2, 3});
-
-
     }
 }
 
