@@ -18,23 +18,52 @@ public class Main {
 
         TMan tman = new TMan();
 
-
+        s.solution(3, 2, 5);
     }
 }
 
 class Solution {
-    public int solution(int n) {
-        int ans = 1;
 
-        while(n/2 != 0) {
-            int a = n/2;
-            int b = n%2;
-            n = n/2;
-            if(b > 0) {
-                ans+=1;
+    //TODO 시간초과!!
+    public int[] solution(int n, long left, long right) {
+        int[] answer = new int[(int)(right-left) + 1];
+        int[][] arr = new int[n][n];
+
+        for(int i = 0 ; i < arr.length ; i++) {
+            for(int j = 0 ; j < arr[i].length ; j++) {
+                if(j > i) arr[i][j] = j+1;
+                else arr[i][j] = i+1;
             }
         }
-        return ans;
+
+        int[] array = new int[(int)Math.pow(arr.length, 2)];
+
+        //test TODO
+//        for(int i = 0 ; i < arr.length ; i++) {
+//            for(int j = 0 ; j < arr[i].length ; j++) {
+//                System.out.print(arr[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
+
+        int cnt = 0;
+        for(int i = 0 ; i < arr.length ; i++) {
+            for(int j = 0 ; j < arr[i].length ; j++) {
+                array[cnt++] = arr[i][j];
+            }
+        }
+
+//        for(int i = 0 ; i < array.length ; i++) {
+//            System.out.print(array[i] + " ");
+//        }
+
+        int idx = 0;
+        while(left <= right) {
+            answer[idx++] = array[(int)left];
+            left++;
+        }
+
+        return answer;
     }
 }
 
