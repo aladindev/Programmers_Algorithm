@@ -18,37 +18,31 @@ public class Main {
 
         TMan tman = new TMan();
 
-        s.solution(2, new int[] {1, 1, 1, 1, 2, 2, 2, 3});
+        s.solution(4, 2, 3);
+
     }
 }
 
 class Solution {
-    public int solution(int k, int[] tangerine) {
+    public int solution(int n, int a, int b) {
         int answer = 0;
-        int[] copy = new int[10000000];
 
-        for(int i : tangerine) {
-            copy[i] += 1;
+        while(true) {
+            a = nextLevel(a);
+            b = nextLevel(b);
+
+            answer++;
+            if(a==b) break;
         }
 
-        Integer[] copyB = Arrays.stream(copy).boxed().toArray(Integer[]::new);
-        Arrays.sort(copyB, (o1, o2) -> {return o2 - o1;});
 
-        int cnt = 0;
-        int lop = 0;
-        while(cnt < k) {
-            int ele = copyB[lop++];
-            if(cnt+ele > k) {
-                answer++;
-                break;
-            } else {
-                cnt += ele;
-                if(ele != 0) {
-                    answer++;
-                }
-            }
-        }
         return answer;
+    }
+    public int nextLevel(int n) {
+        if(n%2 != 0) {
+            return n/2+1;
+        }
+        return n/2;
     }
 }
 
