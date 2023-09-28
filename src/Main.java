@@ -25,7 +25,8 @@ public class Main {
 class Solution {
 
     //TODO 시간초과!!
-    /** ㅅㅓㄹ명 */
+    /** ㅅㅓㄹ명대로 하면 시간초과 !!
+     * 설명 외의 방법으로 풀어야 함....*/
     public int[] solution(int n, long left, long right) {
         int[] answer = new int[(int)(right-left) + 1];
         int[][] arr = new int[n][n];
