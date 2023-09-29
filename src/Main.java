@@ -30,38 +30,32 @@ class Solution {
 
 
     /**
-     *          1     2     3     4
-     *   i = 1  1     2     3     4
-     *   i = 2  2     2     3     4
-     *   i = 3  3     3     3     4
-     *   i = 4  4     4     4     4
+     *          0     1     2     3
+     *   i = 0  1     2     3     4
+     *   i = 1  2     2     3     4
+     *   i = 2  3     3     3     4
+     *   i = 3  4     4     4     4
      * */
 
     public int[] solution(int n, long left, long right) {
         int[] answer = new int[(int)(right-left) + 1];
         int[][] arr = new int[n][n];
+        int[] array = new int[(int)Math.pow(arr.length, 2)];
 
         int row = 0;
+        int idx = 0;
+        int answerIdx = 0;
         while(row < n) {
             for(int i = 0 ; i < n ; i++) {
                 int max = row>i ? row : i;
                 arr[row][i] = max+1;
+                array[idx] = max+1;
+                if(idx>=left && idx<=right) {
+                    answer[answerIdx++] = array[idx];
+                }
+                idx++;
             }
             row++;
-        }
-
-        int[] array = new int[(int)Math.pow(arr.length, 2)];
-        int cnt = 0;
-        for(int i = 0 ; i < arr.length ; i++) {
-            for(int j = 0 ; j < arr[i].length ; j++) {
-                array[cnt++] = arr[i][j];
-            }
-        }
-
-        int idx = 0;
-        while(left <= right) {
-            answer[idx++] = array[(int)left];
-            left++;
         }
 
         return answer;
