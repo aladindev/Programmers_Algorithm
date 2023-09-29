@@ -45,10 +45,10 @@ class Solution {
 
         int idx = 0;
         for(long i = left ; i <= right ; i++) {
-            long row = i/n-1;
-            long col = i%n-1;
+            long row = (int) (i/n-1);
+            long col = (int) (i%n-1);
 
-            answer[idx++] = row>col ? (int)row+2 : (int)col+2;
+            answer[idx++] = row>col ? (int)(row+2) : (int)(col+2);
         }
 
 //        while(row < n) {
