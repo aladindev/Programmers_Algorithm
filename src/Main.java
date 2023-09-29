@@ -42,21 +42,27 @@ class Solution {
         int[][] arr = new int[n][n];
         int[] array = new int[(int)Math.pow(arr.length, 2)];
 
-        int row = 0;
+
         int idx = 0;
-        int answerIdx = 0;
-        while(row < n) {
-            for(int i = 0 ; i < n ; i++) {
-                int max = row>i ? row : i;
-                arr[row][i] = max+1;
-                array[idx] = max+1;
-                if(idx>=left && idx<=right) {
-                    answer[answerIdx++] = array[idx];
-                }
-                idx++;
-            }
-            row++;
+        for(long i = left ; i <= right ; i++) {
+            long row = i/n-1;
+            long col = i%n-1;
+
+            answer[idx++] = row>col ? (int)row+2 : (int)col+2;
         }
+
+//        while(row < n) {
+//            for(int i = 0 ; i < n ; i++) {
+//                int max = row>i ? row : i;
+//                arr[row][i] = max+1;
+//                array[idx] = max+1;
+//                if(idx>=left && idx<=right) {
+//                    answer[answerIdx++] = array[idx];
+//                }
+//                idx++;
+//            }
+//            row++;
+//        }
 
         return answer;
     }
