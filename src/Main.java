@@ -18,39 +18,45 @@ public class Main {
 
         TMan tman = new TMan();
 
-        s.solution(3, 2, 5);
+        int result = s.solution(new String[]{"banana", "apple", "rice", "pork", "pot"}
+                , new int[]{3, 2, 2, 2, 1}
+                , new String[]{"chicken", "apple", "apple", "banana", "rice", "apple", "pork", "banana", "pork", "rice", "pot", "banana", "apple", "banana"});
+
+        System.out.println(result);
+
     }
 }
 
 class Solution {
+    public int solution(String[] want, int[] number, String[] discount) {
+        int answer = 0;
 
-    //TODO 시간초과!!
-    /** ㅅㅓㄹ명대로 하면 시간초과 !!
-     * 설명 외의 방법으로 풀어야 함....*/
-
-
-    /**
-     *          0     1     2     3
-     *   i = 0  1     2     3     4
-     *   i = 1  2     2     3     4
-     *   i = 2  3     3     3     4
-     *   i = 3  4     4     4     4
-     * */
-
-    public int[] solution(int n, long left, long right) {
-        int[] answer = new int[(int)(right-left) + 1];
-        int[][] arr = new int[n][n];
-        int[] array = new int[(int)Math.pow(arr.length, 2)];
-
-
-        int idx = 0;
-        for(long i = left ; i <= right ; i++) {
-            int row = (int) (i/(long)n-1);
-            int col = (int) (i%(long)n-1);
-
-            answer[idx++] = Math.max(row+2, col+2);
+        Map<String, Integer> wantMap = new HashMap<>();
+        for(int i = 0 ; i < number.length ; i++) {
+            wantMap.put(want[i], number[i]);
         }
 
+        int idx = 0;
+        int arraySum = Arrays.stream(number).sum();
+        while(idx+arraySum < discount.length) {
+            Map<String, Integer> tmp = wantMap;
+            for(int i = idx ; i < idx+arraySum ; i++) {
+                Integer cnt = tmp.get(discount[i]);
+                if(cnt != null && cnt != 0) {
+                    tmp.put(discount[i], --cnt);
+                }
+            }
+            Iterator<String> keySet = tmp.keySet().iterator();
+            int sum = 0;
+            while(keySet.hasNext()) {
+                sum += tmp.get(keySet.next());
+                if(sum != 0) break;
+            }
+            if(sum == 0) {
+                answer += 1;
+            }
+            idx++;
+        }
         return answer;
     }
 }
