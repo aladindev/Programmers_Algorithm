@@ -45,24 +45,11 @@ class Solution {
 
         int idx = 0;
         for(long i = left ; i <= right ; i++) {
-            long row = (int) (i/n-1);
-            long col = (int) (i%n-1);
+            int row = (int) (i/(long)n-1);
+            int col = (int) (i%(long)n-1);
 
-            answer[idx++] = row>col ? (int)(row+2) : (int)(col+2);
+            answer[idx++] = Math.max(row+2, col+2);
         }
-
-//        while(row < n) {
-//            for(int i = 0 ; i < n ; i++) {
-//                int max = row>i ? row : i;
-//                arr[row][i] = max+1;
-//                array[idx] = max+1;
-//                if(idx>=left && idx<=right) {
-//                    answer[answerIdx++] = array[idx];
-//                }
-//                idx++;
-//            }
-//            row++;
-//        }
 
         return answer;
     }
