@@ -36,10 +36,13 @@ class Solution {
             wantMap.put(want[i], number[i]);
         }
 
+//"chicken", "apple", "apple", "banana", "rice", "apple", "pork", "banana", "pork", "rice", "pot", "banana", "apple", "banana"
         int idx = 0;
         int arraySum = Arrays.stream(number).sum();
-        while(idx+arraySum < discount.length) {
-            Map<String, Integer> tmp = wantMap;
+        while(idx+arraySum <= discount.length) {
+
+            Map<String, Integer> tmp = new HashMap<>();
+            tmp.putAll(wantMap);
             for(int i = idx ; i < idx+arraySum ; i++) {
                 Integer cnt = tmp.get(discount[i]);
                 if(cnt != null && cnt != 0) {
