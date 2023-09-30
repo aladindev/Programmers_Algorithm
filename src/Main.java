@@ -23,21 +23,9 @@ public class Main {
 }
 
 class Solution {
-    public int solution(int[] elements) {
-        Set<Integer> resultSet = new TreeSet<>();
-
-        int idx = 0;
-        for(int i = 0 ; i < elements.length ; i++) {
-            int sum = 0;
-            for(int j = i ; j <= idx ; j++) {
-                sum += elements[j];
-            }
-            idx++;
-            resultSet.add(sum);
-        }
-
-
-        return resultSet.size();
+    public String solution(String input_string) {
+        String answer = "";
+        return answer;
     }
 }
 
