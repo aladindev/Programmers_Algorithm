@@ -25,6 +25,32 @@ public class Main {
 class Solution {
     public String solution(String input_string) {
         String answer = "";
+
+        Set<Character> set = new TreeSet<>();
+
+        char[] arr = input_string.toCharArray();
+        for(char c : arr) {
+            // 2개 이상 나타나는 알파벳
+            if(input_string.indexOf(c) > -1 && input_string.indexOf(c) != input_string.lastIndexOf(c)) {
+                // 붙어있는지 판별
+                for(int i = input_string.indexOf(c) ; i < input_string.lastIndexOf(c)+1 ; i++) {
+                    if(c != input_string.charAt(i)) {
+                        set.add(c);
+                    }
+                }
+            }
+        }
+
+        if(set.size() == 0) {
+            answer = "N";
+            return answer;
+        }
+
+        Iterator<Character> iter = set.iterator();
+        while(iter.hasNext()) {
+            answer += iter.next();
+        }
+
         return answer;
     }
 }
