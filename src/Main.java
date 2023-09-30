@@ -18,49 +18,26 @@ public class Main {
 
         TMan tman = new TMan();
 
-        int result = s.solution(new String[]{"banana", "apple", "rice", "pork", "pot"}
-                , new int[]{3, 2, 2, 2, 1}
-                , new String[]{"chicken", "apple", "apple", "banana", "rice", "apple", "pork", "banana", "pork", "rice", "pot", "banana", "apple", "banana"});
-
-        System.out.println(result);
 
     }
 }
 
 class Solution {
-    public int solution(String[] want, int[] number, String[] discount) {
-        int answer = 0;
+    public int solution(int[] elements) {
+        Set<Integer> resultSet = new TreeSet<>();
 
-        Map<String, Integer> wantMap = new HashMap<>();
-        for(int i = 0 ; i < number.length ; i++) {
-            wantMap.put(want[i], number[i]);
-        }
-
-//"chicken", "apple", "apple", "banana", "rice", "apple", "pork", "banana", "pork", "rice", "pot", "banana", "apple", "banana"
         int idx = 0;
-        int arraySum = Arrays.stream(number).sum();
-        while(idx+arraySum <= discount.length) {
-
-            Map<String, Integer> tmp = new HashMap<>();
-            tmp.putAll(wantMap);
-            for(int i = idx ; i < idx+arraySum ; i++) {
-                Integer cnt = tmp.get(discount[i]);
-                if(cnt != null && cnt != 0) {
-                    tmp.put(discount[i], --cnt);
-                }
-            }
-            Iterator<String> keySet = tmp.keySet().iterator();
+        for(int i = 0 ; i < elements.length ; i++) {
             int sum = 0;
-            while(keySet.hasNext()) {
-                sum += tmp.get(keySet.next());
-                if(sum != 0) break;
-            }
-            if(sum == 0) {
-                answer += 1;
+            for(int j = i ; j <= idx ; j++) {
+                sum += elements[j];
             }
             idx++;
+            resultSet.add(sum);
         }
-        return answer;
+
+
+        return resultSet.size();
     }
 }
 
