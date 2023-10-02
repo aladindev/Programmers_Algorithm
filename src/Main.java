@@ -50,10 +50,10 @@ class Solution {
         }
 
         Iterator<Map.Entry<Integer, Map<Integer, Integer>>> iter22 = result.entrySet().iterator();
-        int idx = 0;
+
+        List<List<Integer>> kkkkList = new ArrayList<>();
         while(iter22.hasNext()) {
             Map.Entry<Integer, Map<Integer, Integer>> ttt = iter22.next();
-
             List<Integer> keyList = new ArrayList<>(ttt.getValue().keySet());
             Collections.sort(keyList, new Comparator<Integer>() {
                 @Override
@@ -61,19 +61,31 @@ class Solution {
                     return ttt.getValue().get(o2) - ttt.getValue().get(o1);
                 }
             });
-
-            System.out.println(keyList);
-
-            Map<Integer, Integer> tmpp = new HashMap<>();
-            for(int i : keyList) {
-                System.out.print(" " + i + " / ");
-                tmpp.put(i, ttt.getValue().get(i));
-            }
-            System.out.println(tmpp);
-
-            result.put(idx++, tmpp);
+            kkkkList.add(keyList);
         }
-        System.out.println(result);
+
+        int max = 0;
+
+        for(int i = 0 ; i < ability[0].length ; i++) { // 컬럼 수만큼 5번 반복
+            Set<Integer> chooseSet = new HashSet<>();
+            int qlry = 0;
+            for(int j = 0 ; j < kkkkList.size() ; j++) { // 행수만큼 3번 반복(과목)
+                int maxIdx = kkkkList.get(j).get(i); // 최대값 인덱스
+                int value = result.get(j).get(maxIdx); // 최대값
+
+                if(chooseSet.contains(maxIdx)) {
+                    if(i < ability[0].length-1) {
+                        maxIdx = kkkkList.get(j).get(i+1);
+                        value = result.get(j).get(maxIdx);
+                    }
+                }
+                qlry += value;
+                chooseSet.add(maxIdx);
+            }
+            max = qlry > max ? qlry : max;
+        }
+        System.out.println(max);
+        System.out.println(answer);
         return answer;
     }
 }
