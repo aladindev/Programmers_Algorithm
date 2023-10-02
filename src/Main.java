@@ -70,15 +70,17 @@ class Solution {
             Set<Integer> chooseSet = new HashSet<>();
             int qlry = 0;
             for(int j = 0 ; j < kkkkList.size() ; j++) { // 행수만큼 3번 반복(과목)
-                int maxIdx = kkkkList.get(j).get(i); // 최대값 인덱스
-                int value = result.get(j).get(maxIdx); // 최대값
-
+                int maxIdx = kkkkList.get(j).get(0); // 최대값 인덱스
                 if(chooseSet.contains(maxIdx)) {
-                    if(i < ability[0].length-1) {
-                        maxIdx = kkkkList.get(j).get(i+1);
-                        value = result.get(j).get(maxIdx);
+                    int nextMax = 0;
+                    while(nextMax++ < ability[0].length) {
+                        if(!chooseSet.contains(nextMax)) {
+                            break;
+                        }
                     }
+                    maxIdx = nextMax;
                 }
+                int value = result.get(j).get(maxIdx); // 최대값
                 qlry += value;
                 chooseSet.add(maxIdx);
             }
