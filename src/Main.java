@@ -18,6 +18,7 @@ public class Main {
 
         TMan tman = new TMan();
 
+        s.solution(new int[][] {{40, 10, 10}, {20, 5, 0}, {30, 30, 30}, {70, 0, 70}, {100, 100, 100}});
 
     }
 }
@@ -25,6 +26,54 @@ public class Main {
 class Solution {
     public int solution(int[][] ability) {
         int answer = 0;
+
+        Map<Integer, List<Integer>> map = new TreeMap<>();
+        for(int i = 0 ; i < ability.length ; i++) { // 사람
+            for(int j = 0 ; j < ability[i].length ; j++) { // 과목
+                List<Integer> tmpList = map.getOrDefault(j, new ArrayList<>());
+                tmpList.add(i, ability[i][j]);
+                map.put(j, tmpList);
+            }
+        }
+
+        //Test
+        Iterator<Map.Entry<Integer, List<Integer>>> iter = map.entrySet().iterator();
+        Map<Integer, Map<Integer, Integer>> result = new TreeMap<>();
+        while(iter.hasNext()) {
+            Map.Entry<Integer, List<Integer>> ii = iter.next();
+
+            Map<Integer, Integer> tmpMap = new TreeMap<>();
+            for(int i = 0 ; i < ii.getValue().size() ; i++) {
+                tmpMap.put(i, ii.getValue().get(i));
+            }
+            result.put(ii.getKey(), tmpMap);
+        }
+
+        Iterator<Map.Entry<Integer, Map<Integer, Integer>>> iter22 = result.entrySet().iterator();
+        int idx = 0;
+        while(iter22.hasNext()) {
+            Map.Entry<Integer, Map<Integer, Integer>> ttt = iter22.next();
+
+            List<Integer> keyList = new ArrayList<>(ttt.getValue().keySet());
+            Collections.sort(keyList, new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    return ttt.getValue().get(o2) - ttt.getValue().get(o1);
+                }
+            });
+
+            System.out.println(keyList);
+
+            Map<Integer, Integer> tmpp = new HashMap<>();
+            for(int i : keyList) {
+                System.out.print(" " + i + " / ");
+                tmpp.put(i, ttt.getValue().get(i));
+            }
+            System.out.println(tmpp);
+
+            result.put(idx++, tmpp);
+        }
+        System.out.println(result);
         return answer;
     }
 }
