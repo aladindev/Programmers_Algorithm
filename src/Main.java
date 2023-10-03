@@ -49,7 +49,7 @@ class Solution {
         }
 
 
-        /**
+        /** 
          {4=100, 3=70, 0=40, 2=30, 1=20}
          {4=100, 2=30, 0=10, 1=5 , 3=0 }
          {4=100, 3=70, 2=30, 0=10, 1=0 }
@@ -83,7 +83,7 @@ class Solution {
                 qlry += value;
                 pick.add(nextKey);
             }
-            max = qlry > max ? qlry : max;
+            max = Math.max(max, qlry);
         }
         return max;
     }
