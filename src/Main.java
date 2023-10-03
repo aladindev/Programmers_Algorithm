@@ -66,20 +66,25 @@ class Solution {
             int qlry = 0;
             int firstKey = sortKeyList.get(0).get(i);
             pick.add(firstKey);
-            qlry += result.get(i).get(firstKey);
+            qlry += result.get(0).get(firstKey);
 
             for(int j = 1 ; j < sortKeyList.size() ; j++) {
-                int nextKey = sortKeyList.get(i).get(j);
+                int nextKey = sortKeyList.get(j).get(0);
                 if(pick.contains(nextKey)) {
-                    
+                    for(int k = 0 ; k < ability.length ; k++) {
+                        int findKey = sortKeyList.get(j).get(k);
+                        if(!pick.contains(findKey)) {
+                            nextKey = findKey;
+                            break;
+                        }
+                    }
                 }
+                int value = result.get(j).get(nextKey);
+                qlry += value;
+                pick.add(nextKey);
             }
-
-
             max = qlry > max ? qlry : max;
         }
-        System.out.println(max);
-
         return max;
     }
 }
