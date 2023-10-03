@@ -12,7 +12,7 @@ public class Main {
 
         Solution s = new Solution();
 
-        s.solution(new int[][] {{40, 10, 10}, {20, 5, 0}, {30, 30, 30}, {70, 0, 70}, {100, 100, 100}});
+        s.solution(new int[][] {{10, 20, 30}, {40, 50, 60}, {70, 80, 90}});
 
     }
 }
@@ -49,7 +49,7 @@ class Solution {
         }
 
 
-        /** 
+        /**
          {4=100, 3=70, 0=40, 2=30, 1=20}
          {4=100, 2=30, 0=10, 1=5 , 3=0 }
          {4=100, 3=70, 2=30, 0=10, 1=0 }
@@ -58,7 +58,19 @@ class Solution {
          [4, 3, 0, 2, 1]
          [4, 2, 0, 1, 3]
          [4, 3, 2, 0, 1]
+
+
+         {0=10, 1=40, 2=70}
+         {0=20, 1=50, 2=80}
+         {0=30, 1=60, 2=90}
+         [2, 1, 0]
+         [2, 1, 0]
+         [2, 1, 0]
          * */
+
+
+        System.out.println(result);
+        System.out.println(sortKeyList);
 
         int max = 0;
         for(int i = 0 ; i < ability.length ; i++) { // 첫 항의 기준이 되는 사람수만큼 반복 5번
@@ -88,8 +100,6 @@ class Solution {
         return max;
     }
 }
-
-
 class Box<T> {
     private T ob;
     public void set(T o) {
