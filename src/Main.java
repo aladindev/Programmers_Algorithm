@@ -32,12 +32,15 @@ class Solution {
         }
 
         List<Map<Integer, Integer>> resultList = new ArrayList<>();
+        //TODO
+        List<List<Integer>> sortKeyList = new ArrayList<>();
 
         for(int i = 0 ; i < result.size() ; i++) {
             List<Integer> keyList = new ArrayList<>(result.get(i).keySet());
             Map<Integer, Integer> map = new LinkedHashMap<>();
             int finalI = i;
             Collections.sort(keyList, (o1, o2) -> {return result.get(finalI).get(o2) - result.get(finalI).get(o1);});
+            sortKeyList.add(keyList);
 
             for(int k : keyList) {
                 map.put(k, result.get(i).get(k));
@@ -45,32 +48,37 @@ class Solution {
             resultList.add(map);
         }
 
-        Set<Integer> pick = new HashSet<>();
-        int max = 0;
-        int qlry = 0;
-
 
         /**
          {4=100, 3=70, 0=40, 2=30, 1=20}
          {4=100, 2=30, 0=10, 1=5 , 3=0 }
          {4=100, 3=70, 2=30, 0=10, 1=0 }
+
+         sortKeyList
+         [4, 3, 0, 2, 1]
+         [4, 2, 0, 1, 3]
+         [4, 3, 2, 0, 1]
          * */
 
-        for(Map<Integer, Integer> map : resultList) {
-            Iterator<Map.Entry<Integer, Integer>> entry = map.entrySet().iterator();
-            while(entry.hasNext()) {
-                Map.Entry<Integer, Integer> next = entry.next();
+        int max = 0;
+        for(int i = 0 ; i < ability.length ; i++) { // 첫 항의 기준이 되는 사람수만큼 반복 5번
+            Set<Integer> pick = new HashSet<>();
+            int qlry = 0;
+            int firstKey = sortKeyList.get(0).get(i);
+            pick.add(firstKey);
+            qlry += result.get(i).get(firstKey);
 
-                int key = next.getKey();
-                int value = next.getValue();
-                if(pick.contains(key)) continue;
-
-                qlry += value;
-                pick.add(key);
-                break;
+            for(int j = 1 ; j < sortKeyList.size() ; j++) {
+                int nextKey = sortKeyList.get(i).get(j);
+                if(pick.contains(nextKey)) {
+                    
+                }
             }
+
+
             max = qlry > max ? qlry : max;
         }
+        System.out.println(max);
 
         return max;
     }
