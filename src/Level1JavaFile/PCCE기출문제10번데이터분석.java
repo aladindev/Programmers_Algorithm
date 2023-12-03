@@ -48,6 +48,7 @@ package Level1JavaFile;
  * */
 
 import java.util.*;
+
 class PCCE기출문제10번데이터분석 {
     public int[][] solution(int[][] data, String ext, int val_ext, String sort_by) {
         //code	date	maximum	remain
@@ -80,7 +81,7 @@ class PCCE기출문제10번데이터분석 {
         for(int i = 0 ; i < list.size() ; i++) {
             answer[i] = list.get(i);
         }
-
+ 
         return answer;
     }
 }
