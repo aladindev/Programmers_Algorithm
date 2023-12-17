@@ -13,9 +13,14 @@ public class Main {
         Solution s = new Solution();
 
         String[] arr = {"OSO","OOO","OXO","OOO"};
-        String[] op = {"E 2","S 3","W 1"};
+        //String[] arr = {"SOO","OXX","OOO"};
+        //String[] arr = {"SOO","OOO","OOO"};
 
-        s.solution(arr, op);
+        String[] op = {"E 2","S 3","W 1"};
+        //String[] op = {"E 2","S 2","W 1"};
+        //String[] op = {"E 2","S 2","W 1"};
+
+        System.out.println(s.solution(arr, op)[0] + " / " + s.solution(arr, op)[1]);
 
     }
 }
@@ -23,15 +28,7 @@ public class Main {
 class Solution {
     public int[] solution(String[] park, String[] routes) {
 
-        String[] arr = {
-                "OSO",
-                "OOO",
-                "OXO",
-                "OOO"};
-        String[] op = {"E 2","S 3","W 1"};
-
-        
-
         return null;
+
     }
 }
