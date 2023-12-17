@@ -12,6 +12,10 @@ public class Main {
 
         Solution s = new Solution();
 
+        String[] arr = {"OSO","OOO","OXO","OOO"};
+        String[] op = {"E 2","S 3","W 1"};
+
+        s.solution(arr, op);
 
     }
 }
