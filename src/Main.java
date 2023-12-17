@@ -23,8 +23,14 @@ public class Main {
 class Solution {
     public int[] solution(String[] park, String[] routes) {
 
-        String[] arr = {"OSO","OOO","OXO","OOO"};
+        String[] arr = {
+                "OSO",
+                "OOO",
+                "OXO",
+                "OOO"};
         String[] op = {"E 2","S 3","W 1"};
+
+        
 
         return null;
     }
