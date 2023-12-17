@@ -81,7 +81,7 @@ class PCCE기출문제10번데이터분석 {
         for(int i = 0 ; i < list.size() ; i++) {
             answer[i] = list.get(i);
         }
- 
+
         return answer;
     }
 }
