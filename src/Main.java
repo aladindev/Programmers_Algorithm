@@ -13,28 +13,20 @@ public class Main {
 
         //백준 10814
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
+        int n = 5;
+        int sum = 0;
 
-        Set<String> set = new HashSet<>();
+        List<Integer> list = new ArrayList<>();
         while(n-- > 0) {
-            set.add(br.readLine());
+            int l = Integer.parseInt(br.readLine());
+            list.add(l);
+            sum += l;
         }
-        List<Object> list = Arrays.asList(set.stream().toArray());
-        Collections.sort(list, new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                if(o1.toString().length() > o2.toString().length()) return 1;
-                else if(o1.toString().length() < o2.toString().length()) {
-                    return -1;
-                } else {
-                    return o1.toString().compareTo(o2.toString());
-                }
-            }
-        });
+        Collections.sort(list);
 
-        for(Object o : list) {
-            System.out.println(o.toString());
-        }
+        System.out.println(sum/5);
+        System.out.println(list.get(2));
+
     }
 }
 
