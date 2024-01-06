@@ -8,25 +8,22 @@ import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws IOException {
 
 
         //백준 10814
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = 5;
-        int sum = 0;
+        String[] line = br.readLine().split(" ");
+        String[] students = br.readLine().split(" ");
 
-        List<Integer> list = new ArrayList<>();
-        while(n-- > 0) {
-            int l = Integer.parseInt(br.readLine());
-            list.add(l);
-            sum += l;
-        }
-        Collections.sort(list);
-
-        System.out.println(sum/5);
-        System.out.println(list.get(2));
-
+        int cutLineIdx = Integer.parseInt(line[1]) - 1;
+        Arrays.sort(students, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return Integer.parseInt(o2) - Integer.parseInt(o1);
+            }
+        });
+        System.out.println(students[cutLineIdx]);
     }
 }
 
