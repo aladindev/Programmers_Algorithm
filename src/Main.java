@@ -28,9 +28,9 @@ public class Main {
             @Override
             public int compare(Integer o1, Integer o2) {
                 if(Integer.parseInt(map.get(o1)[0]) > Integer.parseInt(map.get(o2)[0])) {
-                    return Integer.parseInt(map.get(o2)[0]) - Integer.parseInt(map.get(o1)[0]);
+                    return 1;
                 } else if(Integer.parseInt(map.get(o1)[0]) < Integer.parseInt(map.get(o2)[0])) {
-                    return Integer.parseInt(map.get(o1)[0]) - Integer.parseInt(map.get(o2)[0]);
+                    return -1;
                 } else {
                     return o1 - o2;
                 }
