@@ -1,8 +1,8 @@
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.math.BigDecimal;
+import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.util.*;
-import java.util.stream.Stream;
 
 
 
@@ -10,18 +10,36 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ParseException {
 
-        Solution s = new Solution();
 
-        String[] arr = {"OSO","OOO","OXO","OOO"};
-        //String[] arr = {"SOO","OXX","OOO"};
-        //String[] arr = {"SOO","OOO","OOO"};
+        //백준 10814
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int key = 1;
 
-        String[] op = {"E 2","S 3","W 1"};
-        //String[] op = {"E 2","S 2","W 1"};
-        //String[] op = {"E 2","S 2","W 1"};
+        Map<Integer, String[]> map = new HashMap<>();
 
-        System.out.println(s.solution(arr, op)[0] + " / " + s.solution(arr, op)[1]);
+        while(n-- > 0) {
+            map.put(key++, br.readLine().split(" "));
+        }
 
+        List<Integer> sortKeyList = new ArrayList<>(map.keySet());
+
+        Collections.sort(sortKeyList, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                if(Integer.parseInt(map.get(o1)[0]) > Integer.parseInt(map.get(o2)[0])) {
+                    return Integer.parseInt(map.get(o2)[0]) - Integer.parseInt(map.get(o1)[0]);
+                } else if(Integer.parseInt(map.get(o1)[0]) < Integer.parseInt(map.get(o2)[0])) {
+                    return Integer.parseInt(map.get(o1)[0]) - Integer.parseInt(map.get(o2)[0]);
+                } else {
+                    return o1 - o2;
+                }
+            }
+        });
+
+        for(Integer i : sortKeyList) {
+            System.out.println(map.get(i)[0] + " " + map.get(i)[1]);
+        }
     }
 }
 
