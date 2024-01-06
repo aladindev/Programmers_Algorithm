@@ -14,31 +14,26 @@ public class Main {
         //백준 10814
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int key = 1;
 
-        Map<Integer, String[]> map = new HashMap<>();
-
+        Set<String> set = new HashSet<>();
         while(n-- > 0) {
-            map.put(key++, br.readLine().split(" "));
+            set.add(br.readLine());
         }
-
-        List<Integer> sortKeyList = new ArrayList<>(map.keySet());
-
-        Collections.sort(sortKeyList, new Comparator<Integer>() {
+        List<Object> list = Arrays.asList(set.stream().toArray());
+        Collections.sort(list, new Comparator<Object>() {
             @Override
-            public int compare(Integer o1, Integer o2) {
-                if(Integer.parseInt(map.get(o1)[0]) > Integer.parseInt(map.get(o2)[0])) {
-                    return 1;
-                } else if(Integer.parseInt(map.get(o1)[0]) < Integer.parseInt(map.get(o2)[0])) {
+            public int compare(Object o1, Object o2) {
+                if(o1.toString().length() > o2.toString().length()) return 1;
+                else if(o1.toString().length() < o2.toString().length()) {
                     return -1;
                 } else {
-                    return o1 - o2;
+                    return o1.toString().compareTo(o2.toString());
                 }
             }
         });
 
-        for(Integer i : sortKeyList) {
-            System.out.println(map.get(i)[0] + " " + map.get(i)[1]);
+        for(Object o : list) {
+            System.out.println(o.toString());
         }
     }
 }
