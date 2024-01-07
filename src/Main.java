@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
 
-        //백준 27433
+        //백준 27433 - 재귀함수
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         long n = Long.parseLong(br.readLine());
 
