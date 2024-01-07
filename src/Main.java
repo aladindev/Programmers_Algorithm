@@ -11,19 +11,16 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
 
-        //백준 10814
+        //백준 27433
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] line = br.readLine().split(" ");
-        String[] students = br.readLine().split(" ");
+        long n = Long.parseLong(br.readLine());
 
-        int cutLineIdx = Integer.parseInt(line[1]) - 1;
-        Arrays.sort(students, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return Integer.parseInt(o2) - Integer.parseInt(o1);
-            }
-        });
-        System.out.println(students[cutLineIdx]);
+        System.out.println(recu(n, 1));
+    }
+    public static long recu(long n, long hap) {
+        if(n == 0) return hap;
+
+        return recu(n-1, hap*n);
     }
 }
 
