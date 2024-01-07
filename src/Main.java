@@ -13,14 +13,29 @@ public class Main {
 
         //백준 27433 - 재귀함수
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        long n = Long.parseLong(br.readLine());
+        String[] line1 = br.readLine().split(" ");
 
-        System.out.println(recu(n, 1));
-    }
-    public static long recu(long n, long hap) {
-        if(n == 0) return hap;
+        Set<Long> set = new HashSet<>();
+        String[] line2 = br.readLine().split(" ");
+        for(String s : line2) {
+            set.add(Long.parseLong(s));
+        }
 
-        return recu(n-1, hap*n);
+        String[] line3 = br.readLine().split(" ");
+        String[] line4 = br.readLine().split(" ");
+
+        for(int i = 0 ; i < line4.length ; i++) {
+            long pL = Long.parseLong(line4[i]);
+            boolean contain = set.contains(pL);
+
+            if(i == line4.length - 1) {
+                if(contain) System.out.print("1");
+                else System.out.print("0");
+            } else {
+                if(contain) System.out.print("1 ");
+                else System.out.print("0 ");
+            }
+        }
     }
 }
 
