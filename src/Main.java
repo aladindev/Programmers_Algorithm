@@ -11,20 +11,26 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
 
-        //백준 14425
+        //백준 7785
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] line1 = br.readLine().split(" ");
 
-        Set<String> set = new HashSet<>();
-        for(int i = 0 ; i < Integer.parseInt(line1[0]) ; i++) set.add(br.readLine());
-
-        int cnt = 0;
-        for(int j = 0 ; j < Integer.parseInt(line1[1]) ; j++) {
-            if (set.contains(br.readLine())) {
-                cnt++;
-            }
+        TreeSet<String> set = new TreeSet<>();
+        for(int i = 0 ; i < Integer.parseInt(line1[0]) ; i++) {
+            String[] tmp = br.readLine().split(" ");
+            if("enter".equals(tmp[1])) set.add(tmp[0]);
+            else if("leave".equals(tmp[1])) set.remove(tmp[0]);
         }
-        System.out.println(cnt);
+
+        List<String> toList = new ArrayList<>(set);
+        Collections.sort(toList, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o2.compareTo(o1);
+            }
+        });
+
+        for(String s : toList) System.out.println(s);
     }
 }
 
