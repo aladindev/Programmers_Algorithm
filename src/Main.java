@@ -14,7 +14,15 @@ public class Main {
         //백준 11478
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line1 = br.readLine();
-        
+
+        Set<String> set = new HashSet<>();
+        for(int i = 0 ; i < line1.length() ; i++) {
+            for(int j = i ; j <= line1.length() ; j++) {
+                String s = line1.substring(i, j);
+                if(s.length() > 0) set.add(line1.substring(i, j));
+            }
+        }
+        System.out.println(set.size());
     }
 }
 
