@@ -8,10 +8,10 @@ import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException { 
+    public static void main(String[] args) throws IOException {
 
 
-        //백준 11478
+        //백준 11478 ㄹ대ㅑ저햐ㅐ더햐ㅐㄷ저햐ㅐㄷ저햐ㅐ
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line1 = br.readLine();
 
