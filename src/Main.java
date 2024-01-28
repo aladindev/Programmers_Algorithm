@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
 
-        //백준 11478
+        //백준 / Programmers 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line1 = br.readLine();
 
