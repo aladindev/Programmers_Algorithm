@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
  
-        //백준 / Programmers 알고리즘
+        //백준 / Programmers 알고리즘   
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line1 = br.readLine();
 
