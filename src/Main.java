@@ -17,7 +17,8 @@ public class Main {
         String line1 = br.readLine();
 
         //Llama2 Fine Tuning (LLM, Large Language Model)
-        // Prompt Tuning 
+        // Prompt Tuning
+        // KorQuad
 
     }
 }
