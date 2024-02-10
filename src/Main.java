@@ -16,7 +16,8 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line1 = br.readLine();
 
-        //Llama2 Fine Tuning (LLM)
+        //Llama2 Fine Tuning (LLM, Large Language Model)
+        // Prompt Tuning 
 
     }
 }
