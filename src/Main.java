@@ -12,9 +12,11 @@ public class Main {
 
 
         // 딥러닝 머신러닝 인공지능 fine tuning 실습 
-        //백준 / Programmers 알고리즘   
+        //백준 / Programmers 알고리즘
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String line1 = br.readLine();
+
+        //Llama2 Fine Tuning (LLM)
 
     }
 }
