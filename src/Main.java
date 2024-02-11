@@ -22,7 +22,7 @@ public class Main {
         // KorQuad 데이터셋에 Fine-Tuning & Fine-Tuning된 GPT 예측
         // 좁은 범위의 데이터를 Fine-Tuning을 통해 직접 학습 시키면
         // 정확한 답은 도출할 수 있으며, 학습 시킨 범위에 한에서는 가장 성능 좋은
-        // AI가 될 수 있다.
+        // AI가 될 수 있다. 
 
     }
 }
