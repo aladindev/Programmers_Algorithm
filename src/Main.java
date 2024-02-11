@@ -18,7 +18,7 @@ public class Main {
 
         //Llama2 Fine Tuning (LLM, Large Language Model)
         // Prompt Tuning
-        // KorQuad
+        // Llama2를 KorQuad 데이터셋에 맞게 Fine-Tuning 하기
 
     }
 }
