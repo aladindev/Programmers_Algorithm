@@ -1,0 +1,13 @@
+
+데이터베이스 트랜잭션(Transaction)
+ - All or Nothing(All Commit Or All Rollback)
+ - 단일한 논리적인 작업 단위(a single logical unit of work)
+ - 여러 SQL문들을 단일 작업으로 묶어서 나눠질 수 없게 만든 것이 translation
+ - commit은 DB에 영구적으로 저장하라 & transaction 종료의 의미
+ - Spring or Spring boot @Transactional 어노테이션 활용
+
+Atomicity(원자성) : Transaction은 논리적으로 쪼개질 수 없는 작업 단위이기 때문에
+                               All or Nothing의 성격을 갖는다.
+Consistency
+Isolation
+Durability
