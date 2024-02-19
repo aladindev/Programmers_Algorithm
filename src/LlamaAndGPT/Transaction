@@ -8,7 +8,8 @@
 
 Atomicity(원자성) : Transaction은 논리적으로 쪼개질 수 없는 작업 단위이기 때문에
                                All or Nothing의 성격을 갖는다.
-Consistency
+
+Consistency(일관성) : 테이블의 데이터 제약 조건 등을 준수하여 일관되게 데이터를 보관한다.
 Isolation
 Durability
 
