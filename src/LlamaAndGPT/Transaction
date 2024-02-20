@@ -29,4 +29,6 @@ Durability(영존성) : 한 번 commit된 데이터는 DBMS에 영구적으로 �
     - Was Server : DB 조회 등의 데이터를 조회하고 동적인 콘텐츠를 제공하는 서버(Dynamic)
     - Web Server를 사용하면 좋은 점 : Was Server 로드 밸런싱 가능
                                  리버스프록시를 사용하여 보안 강화 가능
-                                 
+
+
+ㅁ Spring WebFlux
