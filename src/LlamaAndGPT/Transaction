@@ -34,4 +34,6 @@ Durability(영존성) : 한 번 commit된 데이터는 DBMS에 영구적으로 �
 ㅁ Spring WebFlux
 
 
-ㅁ Spring AOP
+ㅁ Spring AOP(Aspect Oriented Programming, 관점 지향 프로그래밍)
+    - 부가적인 로직을 모듈화 하여 개발자는 비즈니스 로직(핵심 로직)에 집중할 수 있다.
+       
