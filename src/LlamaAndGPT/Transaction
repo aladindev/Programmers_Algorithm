@@ -46,4 +46,11 @@ JobRepository 수행되는 Job 의 모든 정보를 담고 있는 저장소.
     - Job 이 실행되게 되면 JobRepository 에 JobExecution 과 StepExecution 을 생성하고, JobRepository 에서 Execution 정보들을 저장하고 조회하며 사용.
 Item
     - 처리할 데이터의 가장 작은 구성 요소.
-       - 예를들면, 파일의 한줄, DB의 한 Row, XML 의 특정 element.
+    - 예를들면, 파일의 한줄, DB의 한 Row, XML 의 특정 element.
+
+ItemReader
+    - Step 에서 Item 을 읽어오는 인터페이스.
+    - 다양한 인터페이스가 존재하여 다양한 방법으로 Item 을 읽음.
+    - DB 데이터뿐만 아니라, File, XML, JSON, CSV 등 읽어 올 수 있음.
+ItemWriter
+    - 처리된 Data 를 Writer 할 때 사용.
