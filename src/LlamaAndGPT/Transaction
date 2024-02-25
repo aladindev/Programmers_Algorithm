@@ -87,3 +87,4 @@ Mono와 Flux
 Flux와 Mono는 Reactive Stream의 구현체인 Reactor 객체이며, 차이점은 발행하는 데이터 갯수이다.
 Flux: 0 ~ N 개의 데이터 전달
 Mono: 0 ~ 1 개의 데이터 전달
+
