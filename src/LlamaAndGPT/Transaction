@@ -77,3 +77,13 @@ ItemWriter
 ㅁ RAG(Retrieval-Augmented Generation)란
 	대규모 언어 모델의 출력을 최적화하여 응답을 생성하기 전에 학습 데이터 소스 외부의
 	지식 베이스를 참조할 수 있도록 합니다.(PDF, HTML, TEXT 등)
+
+
+Subscriber -> Publisher: 구독 요청
+Publisher -> Subscriber: Subscription 정보 전달
+Subscriber -> Subscription -> Publisher: Subscription의 request 함수를 통해 Publisher에게 요청
+Publisher -> Subscription -> Subscriber: Subscription의 시그널(onNext, onComplete, onError 등)을 응답
+Mono와 Flux
+Flux와 Mono는 Reactive Stream의 구현체인 Reactor 객체이며, 차이점은 발행하는 데이터 갯수이다.
+Flux: 0 ~ N 개의 데이터 전달
+Mono: 0 ~ 1 개의 데이터 전달
